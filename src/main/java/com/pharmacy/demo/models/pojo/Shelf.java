@@ -14,12 +14,12 @@ import java.util.List;
 @Table(name="shelfs")
 public class Shelf {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     @OneToMany(mappedBy = "shelf")
     private List<Medicine> medicines;
     @ManyToOne
-    @JoinColumn("pharmacy_id")
+    @JoinColumn(name="pharmacy_id")
     private Pharmacy pharmacy;
 }

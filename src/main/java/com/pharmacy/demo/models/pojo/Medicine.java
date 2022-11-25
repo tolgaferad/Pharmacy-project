@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Table(name="medicines")
 public class Medicine {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String barcode;
     private String strength;
@@ -29,9 +29,9 @@ public class Medicine {
     @JoinColumn(name="category_id")
     private Category category;
     @ManyToOne
-    @JoinColumn("pharmacy_id")
+    @JoinColumn(name="pharmacy_id")
     private Pharmacy pharmacy;
     @ManyToOne
-    @JoinColumn("sale_id")
+    @JoinColumn(name="sale_id")
     private Sale sale;
 }

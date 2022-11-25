@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 @Table(name="users")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String username;
     private String password;
@@ -24,7 +24,7 @@ public class User {
     private String name;
     private Timestamp createTime;
     @ManyToOne
-    @JoinColumn("pharmacy_id")
+    @JoinColumn(name="pharmacy_id")
     private Pharmacy pharmacy;
 }
 
