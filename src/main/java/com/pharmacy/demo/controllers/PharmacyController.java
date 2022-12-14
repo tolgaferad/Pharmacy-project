@@ -23,11 +23,13 @@ public class PharmacyController {
     private SessionManager sessionManager;
     @Autowired
     private PharmacyService pharmacyService;
+
     @PostMapping("/pharmacy")
     public Pharmacy createPharmacy(CreatePharmacyDTO createPharmacyDTO,HttpSession session){
         int userId=sessionManager.getLoggedId(session);
         return pharmacyService.createPharmacy(createPharmacyDTO,userId);
     }
+
     @PostMapping("/pharmacy/pharmacist")
     public UserWithoutPasswordDTO addPharmacist(UserOnlyEmailDTO userEmailDTO,HttpSession session) {
         int userId = sessionManager.getLoggedId(session);

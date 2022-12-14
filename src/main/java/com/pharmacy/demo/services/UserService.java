@@ -1,5 +1,6 @@
 package com.pharmacy.demo.services;
 
+import com.pharmacy.demo.exceptions.AuthenticationException;
 import com.pharmacy.demo.exceptions.BadRequestException;
 import com.pharmacy.demo.exceptions.NotFoundException;
 import com.pharmacy.demo.models.Role;
@@ -19,16 +20,26 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User login(UserLoginDTO userLoginDTO) {
-        //TODO
-        return new User();
-    }
     public User getUserById(int id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             return user.get();
         } else {
             throw new NotFoundException("User not found");
+        }
+    }
+
+    public User login(UserLoginDTO loginUserDto) {
+        User user = userRepository.findByUsername(loginUserDto.getUsername());
+        if (user == null) {
+            throw new AuthenticationException("Wrong credentials");
+        } else {
+            PasswordEncoder encoder = new BCryptPasswordEncoder();
+            if (encoder.matches(loginUserDto.getPassword(), user.getPassword())) {
+                return user;
+            } else {
+                throw new AuthenticationException("Wrong credentials");
+            }
         }
     }
 
@@ -54,15 +65,48 @@ public class UserService {
     }
 
     public User editUser(UpdateRequestUserDTO userDTO, int userId) {
-        return  new User();
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isEmpty()) {
+            throw new NotFoundException("User not found");
+        }
+        if (userDTO.getUsername() != null) {
+            String currentUsername=user.get().getUsername();
+            if (userRepository.findByUsername(userDTO.getUsername()) != null && !userDTO.getUsername().equals(currentUsername)) {
+                throw new BadRequestException("Username already exists");
+            }
+            user.get().setUsername(userDTO.getUsername());
+        }
+        if (userDTO.getName() != null) {
+            user.get().setName(userDTO.getName());
+        }
+        if (userDTO.getEmail() != null) {
+            String currentEmail=user.get().getEmail();
+            if (userRepository.findByEmail(userDTO.getEmail()) != null && !userDTO.getEmail().equals(currentEmail)) {
+                throw new BadRequestException("Email already exists");
+            }
+            user.get().setEmail(userDTO.getEmail());
+        }
+        return userRepository.save(user.get());
     }
 
-    public User deleteUser(int userId) {
-        return new User();
+    public UserWithoutPasswordDTO deleteUser(int userId) {
+        Optional<User> optUser = userRepository.findById(userId);
+        if (optUser.isEmpty()) {
+            throw new NotFoundException("User not found");
+        }
+        User user = optUser.get();
+        //cannot map entity after it is deleted
+        UserWithoutPasswordDTO responseUser = new UserWithoutPasswordDTO(user);
+        userRepository.delete(user);
+        return responseUser;
     }
 
     public User logoutUser(int userId) {
-        return new User();
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isEmpty()) {
+            throw new NotFoundException("User not found");
+        }
+        return user.get();
     }
 
     public User changePassword(int userId, ChangePassUserDTO changePasswordDTO) {

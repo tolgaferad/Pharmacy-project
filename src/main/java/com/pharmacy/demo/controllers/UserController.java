@@ -37,7 +37,6 @@ public class UserController {
         return new UserWithoutPasswordDTO(user);
     }
 
-
      @PutMapping("/users")
   public UserWithoutPasswordDTO edit(@Valid @RequestBody UpdateRequestUserDTO editUserDTO,
                                   HttpSession session) {
@@ -49,7 +48,7 @@ public class UserController {
    @DeleteMapping("/users")
     public UserWithoutPasswordDTO delete(HttpSession session) {
        int userId = sessionManager.getLoggedId(session);
-       return new UserWithoutPasswordDTO(userService.deleteUser(userId));
+       return userService.deleteUser(userId);
    }
 
    @GetMapping("/users/logout")
