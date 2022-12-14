@@ -1,10 +1,8 @@
 package com.pharmacy.demo.models.pojo;
-
-import lombok.Generated;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import com.pharmacy.demo.models.Role;
+import com.pharmacy.demo.models.dto.userDTO.UserLoginDTO;
+import com.pharmacy.demo.models.dto.userDTO.UserRegisterDTO;
+import lombok.*;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -12,6 +10,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="users")
 public class User {
@@ -23,9 +22,19 @@ public class User {
     private String email;
     private String name;
     private Timestamp createTime;
+    private Role role;
     @ManyToOne
     @JoinColumn(name="pharmacy_id")
     private Pharmacy pharmacy;
+
+    public User(UserRegisterDTO userDTO) {
+        this.username=userDTO.getUsername();
+        this.password=userDTO.getPassword();
+        this.email=userDTO.getEmail();
+        this.name=userDTO.getName();
+        this.role=userDTO.getRole();
+        this.createTime=userDTO.getCreateTime();
+    }
 }
 
 
