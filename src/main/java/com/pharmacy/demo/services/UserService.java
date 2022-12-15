@@ -54,7 +54,7 @@ public class UserService {
         if (!userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
             throw new BadRequestException("Confirm password doesn't match");
         }
-        if(userDTO.getRole()!= Role.ADMIN || userDTO.getRole()!=Role.USER){
+        if (userDTO.getRole() != Role.ADMIN || userDTO.getRole() != Role.USER) {
             throw new BadRequestException("The user role should be either ADMIN or USER");
         }
         PasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -70,7 +70,7 @@ public class UserService {
             throw new NotFoundException("User not found");
         }
         if (userDTO.getUsername() != null) {
-            String currentUsername=user.get().getUsername();
+            String currentUsername = user.get().getUsername();
             if (userRepository.findByUsername(userDTO.getUsername()) != null && !userDTO.getUsername().equals(currentUsername)) {
                 throw new BadRequestException("Username already exists");
             }
@@ -80,7 +80,7 @@ public class UserService {
             user.get().setName(userDTO.getName());
         }
         if (userDTO.getEmail() != null) {
-            String currentEmail=user.get().getEmail();
+            String currentEmail = user.get().getEmail();
             if (userRepository.findByEmail(userDTO.getEmail()) != null && !userDTO.getEmail().equals(currentEmail)) {
                 throw new BadRequestException("Email already exists");
             }
@@ -110,6 +110,24 @@ public class UserService {
     }
 
     public User changePassword(int userId, ChangePassUserDTO changePasswordDTO) {
-        return new User();
+        Optional<User> optUser = userRepository.findById(userId);
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        if (optUser.isEmpty()) {
+            throw new NotFoundException("User not found");
+        }
+        if (!encoder.matches(changePasswordDTO.getCurrentPassword(), optUser.get().getPassword())) {
+            throw new AuthenticationException("Invalid current password");
+        }
+        if (!changePasswordDTO.getPassword().equals(changePasswordDTO.getConfirmPassword())) {
+            throw new AuthenticationException("Confirm password doesn't match");
+        }
+        if (encoder.matches(changePasswordDTO.getPassword(), optUser.get().getPassword())) {
+            throw new AuthenticationException("Entered the same password as current one");
+        } else {
+            User user = optUser.get();
+            user.setPassword(encoder.encode(changePasswordDTO.getPassword()));
+            userRepository.save(user);
+            return user;
+        }
     }
 }

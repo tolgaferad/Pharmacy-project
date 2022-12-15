@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RestController
-public class UserController {
+public class UserController extends AbstractController {
     @Autowired
     private UserService userService;
     @Autowired
@@ -37,21 +37,21 @@ public class UserController {
         return new UserWithoutPasswordDTO(user);
     }
 
-     @PutMapping("/users")
-  public UserWithoutPasswordDTO edit(@Valid @RequestBody UpdateRequestUserDTO editUserDTO,
-                                  HttpSession session) {
-      int userId = sessionManager.getLoggedId(session);
-      User user = userService.editUser(editUserDTO, userId);
-      return new UserWithoutPasswordDTO(user);
-   }
+    @PutMapping("/users")
+    public UserWithoutPasswordDTO edit(@Valid @RequestBody UpdateRequestUserDTO editUserDTO,
+                                       HttpSession session) {
+        int userId = sessionManager.getLoggedId(session);
+        User user = userService.editUser(editUserDTO, userId);
+        return new UserWithoutPasswordDTO(user);
+    }
 
-   @DeleteMapping("/users")
+    @DeleteMapping("/users")
     public UserWithoutPasswordDTO delete(HttpSession session) {
-       int userId = sessionManager.getLoggedId(session);
-       return userService.deleteUser(userId);
-   }
+        int userId = sessionManager.getLoggedId(session);
+        return userService.deleteUser(userId);
+    }
 
-   @GetMapping("/users/logout")
+    @GetMapping("/users/logout")
     public UserWithoutPasswordDTO logout(HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
         User user = userService.logoutUser(userId);
@@ -61,7 +61,7 @@ public class UserController {
 
     @PostMapping("/users/change_password")
     public UserWithoutPasswordDTO changePassword(@Valid @RequestBody ChangePassUserDTO changePasswordDTO,
-                                             HttpSession session) {
+                                                 HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
         User user = userService.changePassword(userId, changePasswordDTO);
         return new UserWithoutPasswordDTO(user);

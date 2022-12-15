@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Getter
@@ -18,6 +19,7 @@ public class Sale {
     private int id;
     private String name;
     private int price;
+    private Timestamp createTime;
     @OneToMany(mappedBy = "sale")
     private List<Medicine> medicines;
 

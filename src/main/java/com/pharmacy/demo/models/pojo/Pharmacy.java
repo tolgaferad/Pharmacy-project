@@ -17,6 +17,7 @@ public class Pharmacy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String address;
     @OneToMany(mappedBy = "pharmacy")
     private List<User> users;
     @OneToMany(mappedBy = "pharmacy")

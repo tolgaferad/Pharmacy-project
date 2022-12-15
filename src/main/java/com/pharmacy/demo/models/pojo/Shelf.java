@@ -22,4 +22,5 @@ public class Shelf {
     @ManyToOne
     @JoinColumn(name="pharmacy_id")
     private Pharmacy pharmacy;
+    private int capacity;
 }
