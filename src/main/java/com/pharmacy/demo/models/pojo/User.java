@@ -1,6 +1,4 @@
 package com.pharmacy.demo.models.pojo;
-import com.pharmacy.demo.models.Role;
-import com.pharmacy.demo.models.dto.userDTO.UserLoginDTO;
 import com.pharmacy.demo.models.dto.userDTO.UserRegisterDTO;
 import lombok.*;
 import javax.persistence.*;
@@ -22,7 +20,7 @@ public class User {
     private String email;
     private String name;
     private Timestamp createTime;
-    private Role role;
+    private String role;
     @ManyToOne
     @JoinColumn(name="pharmacy_id")
     private Pharmacy pharmacy;

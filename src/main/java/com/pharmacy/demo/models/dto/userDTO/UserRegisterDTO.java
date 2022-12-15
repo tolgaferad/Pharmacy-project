@@ -1,7 +1,6 @@
 package com.pharmacy.demo.models.dto.userDTO;
 
 
-import com.pharmacy.demo.models.Role;
 import com.pharmacy.demo.utils.ValidPassword;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,7 +31,7 @@ public class UserRegisterDTO {
     @NotBlank(message = "Email is mandatory")
     @Email(message = "Invalid email format")
     private String email;
-    private Role role;
+    private String role;
     private Timestamp createTime;
 
 

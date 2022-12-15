@@ -3,7 +3,6 @@ package com.pharmacy.demo.services;
 import com.pharmacy.demo.exceptions.AuthenticationException;
 import com.pharmacy.demo.exceptions.BadRequestException;
 import com.pharmacy.demo.exceptions.NotFoundException;
-import com.pharmacy.demo.models.Role;
 import com.pharmacy.demo.models.dto.userDTO.*;
 import com.pharmacy.demo.models.pojo.User;
 import com.pharmacy.demo.models.repository.UserRepository;
@@ -13,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -54,8 +54,8 @@ public class UserService {
         if (!userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
             throw new BadRequestException("Confirm password doesn't match");
         }
-        if (userDTO.getRole() != Role.ADMIN || userDTO.getRole() != Role.USER) {
-            throw new BadRequestException("The user role should be either ADMIN or USER");
+        if(!List.of("ADMIN", "USER").contains(userDTO.getRole())){
+            throw new BadRequestException("Role should be either ADMIN or USER");
         }
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         userDTO.setPassword(encoder.encode(userDTO.getPassword()));
