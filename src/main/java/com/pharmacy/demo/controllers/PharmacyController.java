@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,13 +27,13 @@ public class PharmacyController extends AbstractController {
 
 
     @PostMapping("/pharmacy")
-    public Pharmacy createPharmacy(PharmacyDTO pharmacyDTO, HttpSession session) {
+    public Pharmacy createPharmacy(@Valid @RequestBody PharmacyDTO pharmacyDTO, HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
         return pharmacyService.createPharmacy(pharmacyDTO, userId);
     }
 
     @PostMapping("/pharmacy/pharmacist")
-    public UserWithoutPasswordDTO addPharmacist(UserOnlyEmailDTO userEmailDTO, HttpSession session) {
+    public UserWithoutPasswordDTO addPharmacist(@Valid @RequestBody UserOnlyEmailDTO userEmailDTO, HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
         User user = pharmacyService.addPharmacist(userEmailDTO, userId);
         return new UserWithoutPasswordDTO(user);
@@ -54,10 +55,10 @@ public class PharmacyController extends AbstractController {
                 .collect(Collectors.toList());
     }
 
-    @PutMapping("pharmacy")
-    public Pharmacy edit(@RequestBody PharmacyDTO pharmacyDTO, HttpSession session) {
+    @PutMapping("/pharmacy")
+    public PharmacyDTO edit(@Valid @RequestBody PharmacyDTO pharmacyDTO, HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
-        return pharmacyService.edit(pharmacyDTO, userId);
+        return EntityToDTOConverter.convertToPharmacyDTO(pharmacyService.edit(pharmacyDTO, userId));
     }
 
 
