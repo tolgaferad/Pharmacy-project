@@ -25,6 +25,7 @@ public class Pharmacy {
     private List<Medicine> medicine;
     @OneToMany(mappedBy = "pharmacy")
     private List<Shelf> shelfs;
+
     public Pharmacy(PharmacyDTO pharmacyDTO){
         this.name=pharmacyDTO.getName();
         this.address=pharmacyDTO.getAddress();

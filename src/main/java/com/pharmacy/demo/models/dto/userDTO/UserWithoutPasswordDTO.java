@@ -1,6 +1,5 @@
 package com.pharmacy.demo.models.dto.userDTO;
 
-import com.pharmacy.demo.models.pojo.Pharmacy;
 import com.pharmacy.demo.models.pojo.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +7,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
+
 @Getter
 @Setter
 @NoArgsConstructor
