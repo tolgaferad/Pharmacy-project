@@ -58,8 +58,8 @@ public class PharmacyController extends AbstractController {
     @PutMapping("/pharmacy")
     public PharmacyDTO edit(@Valid @RequestBody PharmacyDTO pharmacyDTO, HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
-        return EntityToDTOConverter.convertToPharmacyDTO(pharmacyService.edit(pharmacyDTO, userId));
+        Pharmacy pharmacy= pharmacyService.edit(pharmacyDTO,userId);
+        return EntityToDTOConverter.convertToPharmacyDTO(pharmacy);
     }
-
 
 }

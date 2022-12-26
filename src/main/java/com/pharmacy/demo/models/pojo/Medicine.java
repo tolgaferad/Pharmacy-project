@@ -28,9 +28,6 @@ public class Medicine {
     @JoinColumn(name = "shelf_id")
     private Shelf shelf;
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
-    @ManyToOne
     @JoinColumn(name = "pharmacy_id")
     private Pharmacy pharmacy;
     @ManyToOne
