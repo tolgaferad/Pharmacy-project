@@ -2,8 +2,10 @@ package com.pharmacy.demo.services;
 
 import com.pharmacy.demo.exceptions.BadRequestException;
 import com.pharmacy.demo.exceptions.NotFoundException;
+import com.pharmacy.demo.models.dao.MedicineDAO;
 import com.pharmacy.demo.models.dto.medicineDTO.AddMedicineDTO;
 import com.pharmacy.demo.models.dto.medicineDTO.EditMedicineDTO;
+import com.pharmacy.demo.models.dto.medicineDTO.FilterMedicineDTO;
 import com.pharmacy.demo.models.pojo.*;
 import com.pharmacy.demo.models.repository.MedicineRepository;
 import com.pharmacy.demo.models.repository.UserRepository;
@@ -22,6 +24,8 @@ public class MedicineService {
     private UserRepository userRepository;
     @Autowired
     private MedicineRepository medicineRepository;
+    @Autowired
+    private MedicineDAO medicineDAO;
 
     public Medicine getById(int userId, int medicineId) {
         List<Medicine> medicineList = getMedicineForPharmacy(userId, medicineId);
@@ -136,4 +140,7 @@ public class MedicineService {
         return medicineRepository.getMedicinesByPharmacyId(pharmacy.getId());
     }
 
+    public List<Medicine> filter(int userId, FilterMedicineDTO filterMedicineDTO) {
+        return medicineDAO.filterMedicine(userId, filterMedicineDTO);
+    }
 }

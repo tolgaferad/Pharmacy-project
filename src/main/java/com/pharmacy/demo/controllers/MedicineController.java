@@ -2,6 +2,7 @@ package com.pharmacy.demo.controllers;
 
 import com.pharmacy.demo.models.dto.medicineDTO.AddMedicineDTO;
 import com.pharmacy.demo.models.dto.medicineDTO.EditMedicineDTO;
+import com.pharmacy.demo.models.dto.medicineDTO.FilterMedicineDTO;
 import com.pharmacy.demo.models.dto.medicineDTO.ResponseMedicineDTO;
 import com.pharmacy.demo.models.pojo.Medicine;
 import com.pharmacy.demo.services.MedicineService;
@@ -73,6 +74,15 @@ public class MedicineController extends AbstractController {
     public List<ResponseMedicineDTO> getByPharmacy(HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
         List<Medicine> medicines = medicineService.getAllByPharmacy(userId);
+        return medicines.stream()
+                .map(EntityToDTOConverter::convertToResponsMedicineDTO)
+                .collect(Collectors.toList());
+    }
+    @PostMapping("/medicines/filter")
+    public List<ResponseMedicineDTO> filter(HttpSession session,
+                                            @Valid @RequestBody FilterMedicineDTO filterMedicineDTO){
+        int userId=sessionManager.getLoggedId(session);
+        List<Medicine> medicines=medicineService.filter(userId,filterMedicineDTO);
         return medicines.stream()
                 .map(EntityToDTOConverter::convertToResponsMedicineDTO)
                 .collect(Collectors.toList());
