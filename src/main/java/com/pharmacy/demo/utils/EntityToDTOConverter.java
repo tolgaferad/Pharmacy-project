@@ -2,10 +2,11 @@ package com.pharmacy.demo.utils;
 
 import com.pharmacy.demo.models.dto.medicineDTO.ResponseMedicineDTO;
 import com.pharmacy.demo.models.dto.pharmacyDTO.PharmacyDTO;
+import com.pharmacy.demo.models.dto.saleDTO.ResponseDeleteSaleDTO;
+import com.pharmacy.demo.models.dto.saleDTO.ResponseSaleDTO;
+import com.pharmacy.demo.models.dto.saleDetailsDTO.ResponseSaleDetailDTO;
 import com.pharmacy.demo.models.dto.userDTO.UserWithoutPasswordDTO;
-import com.pharmacy.demo.models.pojo.Medicine;
-import com.pharmacy.demo.models.pojo.Pharmacy;
-import com.pharmacy.demo.models.pojo.User;
+import com.pharmacy.demo.models.pojo.*;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,17 @@ public class EntityToDTOConverter {
 
     public static ResponseMedicineDTO convertToResponsMedicineDTO(Medicine medicine) {
         return modelMapper.map(medicine, ResponseMedicineDTO.class);
+    }
+
+    public static ResponseSaleDTO convertToResponseSaleDTO(Sale sale){
+        return modelMapper.map(sale,ResponseSaleDTO.class);
+    }
+
+    public static ResponseSaleDetailDTO convertToResponseSaleDetailDTO(SaleDetail saleDetail){
+        return modelMapper.map(saleDetail,ResponseSaleDetailDTO.class);
+    }
+
+    public static ResponseDeleteSaleDTO convertToResponseDeleteSaleDTO(Sale sale){
+        return modelMapper.map(sale,ResponseDeleteSaleDTO.class);
     }
 }

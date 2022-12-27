@@ -32,9 +32,6 @@ public class Medicine {
     @ManyToOne
     @JoinColumn(name = "pharmacy_id")
     private Pharmacy pharmacy;
-    @ManyToOne
-    @JoinColumn(name = "sale_id")
-    private Sale sale;
 
     public Medicine(AddMedicineDTO addMedicineDTO) {
         this.name = addMedicineDTO.getName();

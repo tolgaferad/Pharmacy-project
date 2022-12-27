@@ -33,7 +33,6 @@ public class ResponseMedicineDTO {
         this.details = medicine.getDetails();
         this.price = medicine.getPrice();
         this.expiryDate = medicine.getExpiryDate();
-        this.shelfName = medicine.getShelf().getName();
         this.pharmacyName = medicine.getPharmacy().getName();
     }
 }

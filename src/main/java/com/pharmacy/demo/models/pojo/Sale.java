@@ -1,5 +1,6 @@
 package com.pharmacy.demo.models.pojo;
 
+import com.pharmacy.demo.models.dto.saleDTO.AddSaleDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +21,14 @@ public class Sale {
     private String name;
     private int price;
     private Timestamp createTime;
+    private boolean isConfirmed;
     @OneToMany(mappedBy = "sale")
-    private List<Medicine> medicines;
-
+    private List<SaleDetail> saleDetails;
+    @ManyToOne
+    @JoinColumn(name="pharmacy_id")
+    private Pharmacy pharmacy;
+    public Sale(AddSaleDTO addSaleDTO) {
+         this.name=addSaleDTO.getName();
+         this.createTime=addSaleDTO.getCreateTime();
+    }
 }

@@ -9,6 +9,7 @@ import com.pharmacy.demo.models.dto.medicineDTO.FilterMedicineDTO;
 import com.pharmacy.demo.models.pojo.*;
 import com.pharmacy.demo.models.repository.MedicineRepository;
 import com.pharmacy.demo.models.repository.UserRepository;
+import com.pharmacy.demo.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,21 +27,20 @@ public class MedicineService {
     private MedicineRepository medicineRepository;
     @Autowired
     private MedicineDAO medicineDAO;
+    @Autowired
+    private Utils utils;
 
     public Medicine getById(int userId, int medicineId) {
         List<Medicine> medicineList = getMedicineForPharmacy(userId, medicineId);
-        if (medicineList.size() < 1) {
+        if (medicineList.isEmpty()) {
             throw new NotFoundException("Medicine not found");
         }
         return medicineList.get(0);
     }
 
     public List<Medicine> addMedicine(AddMedicineDTO addMedicineDTO, int userId) {
-        Optional<User> optUser = userRepository.findById(userId);
-        if (optUser.isEmpty()) {
-            throw new NotFoundException("User not found");
-        }
-        Pharmacy pharmacy = optUser.get().getPharmacy();
+        User user=utils.checkWhetherUserHasPharmacy(userId);
+        Pharmacy pharmacy = user.getPharmacy();
         if (addMedicineDTO.getPrice() < 0) {
             throw new BadRequestException("Price cannot be less then 0");
         }
@@ -62,7 +62,7 @@ public class MedicineService {
 
     public Medicine delete(int userId, int medicineId) {
         List<Medicine> medicineList = getMedicineForPharmacy(userId, medicineId);
-        if (medicineList.size() < 1) {
+        if (medicineList.isEmpty()) {
             throw new NotFoundException("Medicine not found");
         }
         medicineRepository.delete(medicineList.get(0));
@@ -107,22 +107,16 @@ public class MedicineService {
         return sbBarcodeNumber.toString();
     }
 
-    private List<Medicine> getMedicineForPharmacy(int userId, int medicineId) {
-        Optional<User> optUser = userRepository.findById(userId);
-        if (optUser.isEmpty()) {
-            throw new NotFoundException("User not found");
-        }
-        Pharmacy pharmacy = optUser.get().getPharmacy();
+    public List<Medicine> getMedicineForPharmacy(int userId, int medicineId) {
+        User user=utils.checkWhetherUserHasPharmacy(userId);
+        Pharmacy pharmacy = user.getPharmacy();
         return pharmacy.getMedicine().stream().filter(medicine -> medicine.getId() == medicineId)
                 .collect(Collectors.toList());
     }
 
     public List<Medicine> getAllByShelf(int userId, int shelfId) {
-        Optional<User> optionalUser = userRepository.findById(userId);
-        if (optionalUser.isEmpty()) {
-            throw new NotFoundException("User not found");
-        }
-        Pharmacy pharmacy = optionalUser.get().getPharmacy();
+        User user= utils.checkWhetherUserHasPharmacy(userId);
+        Pharmacy pharmacy = user.getPharmacy();
         List<Shelf> shelfList = pharmacy.getShelfs().stream().filter((shelf -> shelf.getId() == shelfId))
                 .collect(Collectors.toList());
         if (shelfList.isEmpty()) {
@@ -132,11 +126,8 @@ public class MedicineService {
     }
 
     public List<Medicine> getAllByPharmacy(int userId) {
-        Optional<User> optionalUser = userRepository.findById(userId);
-        if (optionalUser.isEmpty()) {
-            throw new NotFoundException("User not found");
-        }
-        Pharmacy pharmacy = optionalUser.get().getPharmacy();
+        User user= utils.checkWhetherUserHasPharmacy(userId);
+        Pharmacy pharmacy = user.getPharmacy();
         return medicineRepository.getMedicinesByPharmacyId(pharmacy.getId());
     }
 

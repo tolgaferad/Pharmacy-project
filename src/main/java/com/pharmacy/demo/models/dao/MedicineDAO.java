@@ -96,8 +96,7 @@ public class MedicineDAO {
                             result.getDouble("price"),
                             result.getTimestamp("expiry_date"),
                             shelf,
-                            pharmacy,
-                            sale
+                            pharmacy
                     );
                     medicines.add(medicine);
                 } while (result.next());
