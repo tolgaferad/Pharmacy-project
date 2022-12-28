@@ -56,5 +56,4 @@ public class ShelfService {
         shelfRepository.deleteById(shelf.getId());
         return shelf;
     }
-    //TODO
 }

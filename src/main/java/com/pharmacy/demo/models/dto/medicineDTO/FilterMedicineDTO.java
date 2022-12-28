@@ -16,6 +16,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class FilterMedicineDTO {
     private String name;
+    private String barcode;
     private String strength;
     private String manufacturer;
     @Positive(message = "Price must be positive")

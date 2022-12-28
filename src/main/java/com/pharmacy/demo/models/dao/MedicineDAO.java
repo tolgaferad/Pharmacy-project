@@ -35,6 +35,7 @@ public class MedicineDAO {
         StringBuilder sql = new StringBuilder("SELECT * FROM medicines WHERE pharmacy_id = ? ");
         boolean nameIncludedInFilter = false;
         boolean priceIncluded = false;
+        boolean barcodeIncluded = false;
         boolean strengthIncluded = false;
         boolean manufacturerIncluded = false;
         boolean expiryDateIncluded = false;
@@ -45,6 +46,10 @@ public class MedicineDAO {
         if (dto.getName() != null) {
             sql.append("AND name LIKE ? ");
             nameIncludedInFilter = true;
+        }
+        if (dto.getBarcode() != null) {
+            sql.append("AND barcode LIKE? ");
+            barcodeIncluded = true;
         }
         if (dto.getPrice() != null) {
             sql.append("AND price = ? ");
@@ -69,6 +74,9 @@ public class MedicineDAO {
             if (nameIncludedInFilter) {
                 ps.setString(paramIdx++, dto.getName() + "%");
             }
+            if(barcodeIncluded){
+                ps.setString(paramIdx++,dto.getBarcode()+"%");
+            }
             if (priceIncluded) {
                 ps.setDouble(paramIdx++, dto.getPrice());
             }
@@ -86,7 +94,6 @@ public class MedicineDAO {
                 do {
                     Pharmacy pharmacy = optionalUser.get().getPharmacy();
                     Shelf shelf = shelfRepository.findById(result.getInt("shelf_id"));
-                    Sale sale = saleRepository.findById(result.getInt("sale_id"));
                     Medicine medicine = new Medicine(result.getInt("id"),
                             result.getString("name"),
                             result.getString("barcode"),
