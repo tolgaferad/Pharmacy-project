@@ -1,5 +1,6 @@
 package com.pharmacy.demo.models.pojo;
 
+import com.pharmacy.demo.models.dto.shelfDTO.AddShelfDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,4 +24,9 @@ public class Shelf {
     @JoinColumn(name="pharmacy_id")
     private Pharmacy pharmacy;
     private int capacity;
+
+    public Shelf(AddShelfDTO addShelfDTO){
+        this.name=addShelfDTO.getName();
+        this.capacity=addShelfDTO.getCapacity();
+    }
 }

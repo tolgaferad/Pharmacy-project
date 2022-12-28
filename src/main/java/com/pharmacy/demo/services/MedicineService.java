@@ -29,6 +29,8 @@ public class MedicineService {
     private MedicineDAO medicineDAO;
     @Autowired
     private Utils utils;
+    @Autowired
+    private ShelfService shelfService;
 
     public Medicine getById(int userId, int medicineId) {
         List<Medicine> medicineList = getMedicineForPharmacy(userId, medicineId);
@@ -133,5 +135,14 @@ public class MedicineService {
 
     public List<Medicine> filter(int userId, FilterMedicineDTO filterMedicineDTO) {
         return medicineDAO.filterMedicine(userId, filterMedicineDTO);
+    }
+
+    public Medicine addToShelf(int userId, int medicineId, int shelfId) {
+        Medicine medicine=getById(userId,medicineId);
+        Shelf shelf=shelfService.getById(userId,shelfId);
+        shelf.getMedicines().add(medicine);
+        medicine.setShelf(shelf);
+        medicineRepository.save(medicine);
+        return medicine;
     }
 }

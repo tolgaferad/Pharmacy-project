@@ -5,6 +5,8 @@ import com.pharmacy.demo.models.dto.pharmacyDTO.PharmacyDTO;
 import com.pharmacy.demo.models.dto.saleDTO.ResponseDeleteSaleDTO;
 import com.pharmacy.demo.models.dto.saleDTO.ResponseSaleDTO;
 import com.pharmacy.demo.models.dto.saleDetailsDTO.ResponseSaleDetailDTO;
+import com.pharmacy.demo.models.dto.shelfDTO.ResponseDeleteShelfDTO;
+import com.pharmacy.demo.models.dto.shelfDTO.ResponseShelfDTO;
 import com.pharmacy.demo.models.dto.userDTO.UserWithoutPasswordDTO;
 import com.pharmacy.demo.models.pojo.*;
 
@@ -37,5 +39,13 @@ public class EntityToDTOConverter {
 
     public static ResponseDeleteSaleDTO convertToResponseDeleteSaleDTO(Sale sale){
         return modelMapper.map(sale,ResponseDeleteSaleDTO.class);
+    }
+
+    public static ResponseShelfDTO convertToResponseShelfDTO(Shelf shelf){
+        return modelMapper.map(shelf,ResponseShelfDTO.class);
+    }
+
+    public static ResponseDeleteShelfDTO convertToResponseDeleteShelfDTO(Shelf shelf){
+        return modelMapper.map(shelf,ResponseDeleteShelfDTO.class);
     }
 }

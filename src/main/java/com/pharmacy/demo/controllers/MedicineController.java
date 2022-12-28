@@ -60,7 +60,7 @@ public class MedicineController extends AbstractController {
         return EntityToDTOConverter.convertToResponsMedicineDTO(medicine);
     }
 
-    @GetMapping("/medicines/shelf/{shelf_id}")
+    @GetMapping("/medicines/shelfs/{shelf_id}")
     public List<ResponseMedicineDTO> getByShelf(HttpSession session,
                                                 @PathVariable("shelf_id") int shelfId) {
         int userId = sessionManager.getLoggedId(session);
@@ -78,13 +78,23 @@ public class MedicineController extends AbstractController {
                 .map(EntityToDTOConverter::convertToResponsMedicineDTO)
                 .collect(Collectors.toList());
     }
+
     @PostMapping("/medicines/filter")
     public List<ResponseMedicineDTO> filter(HttpSession session,
-                                            @Valid @RequestBody FilterMedicineDTO filterMedicineDTO){
-        int userId=sessionManager.getLoggedId(session);
-        List<Medicine> medicines=medicineService.filter(userId,filterMedicineDTO);
+                                            @Valid @RequestBody FilterMedicineDTO filterMedicineDTO) {
+        int userId = sessionManager.getLoggedId(session);
+        List<Medicine> medicines = medicineService.filter(userId, filterMedicineDTO);
         return medicines.stream()
                 .map(EntityToDTOConverter::convertToResponsMedicineDTO)
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/medicines/{medicine_id}/shelfs/{shelf_id}")
+    public ResponseMedicineDTO addToShelf(HttpSession session,
+                                          @PathVariable("medicine_id") int medicineId,
+                                          @PathVariable("shelf_id") int shelfId) {
+        int userId = sessionManager.getLoggedId(session);
+        Medicine medicine = medicineService.addToShelf(userId, medicineId, shelfId);
+        return EntityToDTOConverter.convertToResponsMedicineDTO(medicine);
     }
 }

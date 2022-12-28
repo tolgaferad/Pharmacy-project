@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,6 +67,5 @@ public class SaleController extends AbstractController {
         Sale sale = saleService.deleteById(userId, saleId);
         return EntityToDTOConverter.convertToResponseDeleteSaleDTO(sale);
     }
-
 
 }

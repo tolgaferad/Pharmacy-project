@@ -21,8 +21,6 @@ public class SaleService {
     @Autowired
     private SaleRepository saleRepository;
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private SaleDetailRepository saleDetailRepository;
     @Autowired
     private Utils utils;
@@ -30,7 +28,7 @@ public class SaleService {
     MedicineService medicineService;
 
     public Sale addSale(AddSaleDTO addSaleDTO, int userId) {
-        User user= utils.checkWhetherUserHasPharmacy(userId);
+        User user = utils.checkWhetherUserHasPharmacy(userId);
         Pharmacy pharmacy = user.getPharmacy();
         addSaleDTO.setCreateTime(new Timestamp(System.currentTimeMillis()));
         if (addSaleDTO.getName() != null) {
@@ -87,7 +85,7 @@ public class SaleService {
     }
 
     private Sale getSaleIfExist(int userId, int saleId) {
-        User user= utils.checkWhetherUserHasPharmacy(userId);
+        User user = utils.checkWhetherUserHasPharmacy(userId);
         Pharmacy pharmacy = user.getPharmacy();
         List<Sale> sales = pharmacy.getSales().stream().filter(sale -> sale.getId() == saleId)
                 .collect(Collectors.toList());
