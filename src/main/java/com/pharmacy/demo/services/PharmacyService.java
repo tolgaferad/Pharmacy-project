@@ -34,6 +34,9 @@ public class PharmacyService {
         if (userByEmail == null) {
             throw new NotFoundException("User with this email not found");
         }
+        if (userByEmail.getRole().equals("ADMIN")) {
+            throw new BadRequestException("You cannot add admins of other pharmacies");
+        }
         pharmacy.getUsers().add(userByEmail);
         userByEmail.setPharmacy(pharmacy);
         pharmacyRepository.save(pharmacy);
