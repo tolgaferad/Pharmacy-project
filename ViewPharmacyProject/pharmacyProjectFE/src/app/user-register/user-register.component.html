@@ -1,0 +1,48 @@
+
+<div class="site-login">
+    <div class="container" id="container1">
+        <div class="form-container sign-up-container">
+            <form id="registerForm" #form="ngForm" (ngSubmit)="onSubmit()">
+                <h2>Create Account</h2>
+                <div class="form-group">
+                    <input type="text" class="form-control" aria-required="true" placeholder="Name" name="name" [(ngModel)]="user.name"/>
+                    <span class="error" *ngIf="hasErrorFirstName">Name must be longer than 2 letters.</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" aria-required="true" placeholder="Username" name="username" [(ngModel)]="user.username"/>
+                    <span class="error" *ngIf="hasErrorUsername">Username must be longer than 5 letters.</span>
+                    <span class="error" *ngIf="hasErrorForExistingUsername">Username already exist, please change it</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" aria-required="true" placeholder="Email" name="email" [(ngModel)]="user.email"/>
+                    <span class="error" *ngIf="hasErrorEmailForInvalidFormat">Invalid email format!</span>
+                    <span class="error" *ngIf="hasErrorForMandatoryEmail">The email is mandatory!</span>
+                    <span class="error" *ngIf="hasErrorForExistingMail">Email already exists in the system!</span>
+
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" aria-required="true" placeholder="Password" name="password" [(ngModel)]="user.password"/>
+                    <span class="error" *ngIf="hasErrorPassword">Password must start with uppercase letter.</span>
+                    <span class="error" *ngIf="hasErrorPassword">Password must have digits.</span>
+                    <span class="error" *ngIf="hasErrorPassword">Password must be longer than 5 symbols.</span>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" aria-required="true" placeholder="Confirm Password" name="confirmPassword" [(ngModel)]="user.confirmPassword"/>
+                    <span class="error" *ngIf="hasErrorConfirmPassword">Enter the same password from the upper field.</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" aria-required="true" placeholder="Role" name="role" [(ngModel)]="user.role"/>
+                    <span class="error" *ngIf="hasErrorForRole">Role must be either ADMIN Or USER</span>
+                </div>
+                <div class="form-group">
+                    <button id="registerSubmit">Register</button>
+                </div>
+            </form>
+        </div>
+        <div class="overlay-panel overlay-right">
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us please login with your personal info</p>
+            <a class="ghost" routerLink="/login">Sign In</a>
+        </div>
+    </div>
+</div>

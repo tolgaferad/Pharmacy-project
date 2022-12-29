@@ -31,6 +31,7 @@ public class UserRegisterDTO {
     @NotBlank(message = "Email is mandatory")
     @Email(message = "Invalid email format")
     private String email;
+    @NotBlank(message = "Role is mandatory")
     private String role;
     private Timestamp createTime;
 
