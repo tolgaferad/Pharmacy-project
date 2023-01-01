@@ -59,8 +59,8 @@
 
 .site-login .container button {
     border-radius: 20px;
-    border: 1px solid #25B6D2;
-    background-color: #25B6D2;
+    border: 1px solid #0A2A66;
+    background-color: #0A2A66;
     color: #FFFFFF;
     font-size: 14px;
     font-weight: bold;
@@ -238,9 +238,6 @@
     background-color: white;
 }
 
-
-
-
 .site-login .sign-in-container {
     left: 0;
     width: 50%;
@@ -313,9 +310,9 @@
 }
 
 .overlay-panel {
-    background: #25B6D2;
-    background: -webkit-linear-gradient(to right, #25B6D2, #71CFE2);
-    background: linear-gradient(to right, #25B6D2, #71CFE2);
+    background: #0A2A66;
+    background: -webkit-linear-gradient(to right, #0abb5a, #0A2A66);
+    background: linear-gradient(to right, #0abb5a, #0A2A66);
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
