@@ -26,8 +26,7 @@ export class UserRegisterComponent implements OnInit {
   hasErrorForExistingMail: boolean = false;
   hasErrorEmailForInvalidFormat: boolean = false;
   hasErrorForMandatoryEmail: boolean=false;
-  hasErrorFirstName: boolean = false;
-  hasErrorLastName: boolean = false;
+  hasErrorName: boolean = false;
   hasErrorUsername: boolean = false;
   hasErrorPassword: boolean = false;
   hasErrorConfirmPassword: boolean = false;
@@ -43,8 +42,7 @@ export class UserRegisterComponent implements OnInit {
         this.hasErrorForExistingMail = false;
         this.hasErrorEmailForInvalidFormat = false;
         this.hasErrorForMandatoryEmail=false;
-        this.hasErrorFirstName = false;
-        this.hasErrorLastName = false;
+        this.hasErrorName = false;
         this.hasErrorUsername = false;
         this.hasErrorPassword = false;
         this.hasErrorConfirmPassword = false;
@@ -75,10 +73,7 @@ export class UserRegisterComponent implements OnInit {
           }
           
           if (err.error.firstName != null) {
-            this.hasErrorFirstName = true; 
-          }
-          if (err.error.lastName != null) {
-            this.hasErrorLastName = true; 
+            this.hasErrorName = true; 
           }
           if (err.error.username != null) {
             this.hasErrorUsername = true; 
