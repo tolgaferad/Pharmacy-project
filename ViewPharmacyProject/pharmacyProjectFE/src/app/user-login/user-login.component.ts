@@ -28,6 +28,7 @@ export class UserLoginComponent implements OnInit {
       email: '',
       password: '',
       createTime:'',
+      role:'',
     }
     userlogin: UserLogin = {
       username: '',

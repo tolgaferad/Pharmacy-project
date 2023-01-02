@@ -17,11 +17,13 @@ public class UserWithoutPasswordDTO {
     private String email;
     private String name;
     private Timestamp createTime;
+    private String role;
 
     public UserWithoutPasswordDTO(User user) {
         this.username = user.getUsername();
         this.email = user.getEmail();
         this.name = user.getName();
         this.createTime = user.getCreateTime();
+        this.role=user.getRole();
     }
 }

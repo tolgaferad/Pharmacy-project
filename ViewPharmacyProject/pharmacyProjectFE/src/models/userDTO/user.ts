@@ -6,5 +6,5 @@ export interface User{
     password:string;
     email:string;
     createTime:string;
-
+    role:string;
 }

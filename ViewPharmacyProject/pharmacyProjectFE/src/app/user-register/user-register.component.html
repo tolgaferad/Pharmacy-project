@@ -4,7 +4,7 @@
     <div class="container" id="container1">
         <div class="form-container sign-up-container">
             <form id="registerForm" #form="ngForm" (ngSubmit)="onSubmit()">
-                <h2>Create Account</h2>
+                <h2>Create Account</h2> 
                 <div class="form-group">
                     <input type="text" class="form-control" aria-required="true" placeholder="Name" name="name" [(ngModel)]="user.name"/>
                     <span class="error" *ngIf="hasErrorName">Name must be longer than 2 letters.</span>
