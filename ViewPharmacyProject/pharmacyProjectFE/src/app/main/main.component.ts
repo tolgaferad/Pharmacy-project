@@ -65,11 +65,22 @@ export class MainComponent implements OnInit {
       this.isAdmin=true;
     }
   }
-  openCategories(){
-    this.router.navigate(['/categories/']);
+  openPharmacyComponent(){
+    this.router.navigate(['/pharmacy/']);
   }
-  openUser(){
+  openUserComponent(){
     this.router.navigate(['/user/'])
+  }
+  openSalesComponent(){
+    this.router.navigate(['/sales/'])
+
+  }
+  openShelfsComponent(){
+    this.router.navigate(['/shelfs/'])
+
+  }
+  openMedicinesComponent(){
+    this.router.navigate(['/medicines/'])
   }
 
 }

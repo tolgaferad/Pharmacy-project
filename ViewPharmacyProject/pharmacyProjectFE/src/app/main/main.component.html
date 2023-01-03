@@ -37,11 +37,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-    <a class="w3-bar-item w3-button w3-padding" *ngIf="isAdmin"  (click)='openCategories()'>Pharmacy</a>
-    <a class="w3-bar-item w3-button w3-padding" (click)="openUser()">Profile</a>
-    <a class="w3-bar-item w3-button w3-padding">Medicine</a>
-    <a class="w3-bar-item w3-button w3-padding" (click)='openCategories()'>Sales</a>
-    <a class="w3-bar-item w3-button w3-padding" (click)='openCategories()'>Shelfs</a>
+    <div>
+    <a class="w3-bar-item w3-button w3-padding"  *ngIf="isAdmin"  (click)="openPharmacyComponent()">Pharmacy</a>
+    </div>
+    <div>
+      <a class="w3-bar-item w3-button w3-padding" (click)="openUserComponent()">Profile</a>
+    </div>
+    <div>
+      <a class="w3-bar-item w3-button w3-padding" (click)="openMedicinesComponent()">Medicines</a>
+    </div>
+    <a class="w3-bar-item w3-button w3-padding" (click)="openSalesComponent()">Sales</a>
+    <a class="w3-bar-item w3-button w3-padding" (click)="openShelfsComponent()">Shelfs</a>
   </div>
 </nav>
 
@@ -52,39 +58,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <!-- !PAGE CONTENT! -->
 
 <div  class="w3-main" style="margin-left:330px;margin-top:50px;">
-  <div>
-    <button mat-raised-button color="warn">Create Account</button>
-    <button  style= "position:center; left:10px; width:140px" mat-raised-button color="warn">Add Transaction</button>
-    <button style= "position:center; left:20px;width:140px" mat-raised-button color="warn">Create Budget</button>
-    <button style= "position:center; left:30px; width:180px" mat-raised-button color="warn" >Create Planned payment</button>
-
-    <div  style="margin-left:-10px;margin-top:20px;">
-    <button  style= "position:center; left:150px;width:140px" mat-raised-button color="success">Show transactions</button>
-    <button  style= "position:center; left:160px;width:140px" mat-raised-button color="success">Show budgets</button>
-    <button  style= "position:center; left:170px;width:180px" mat-raised-button color="success">Show planned payments</button>
-    </div>
-  </div>
-  
 </div>
-  <div style="margin-left:400px;margin-top:50px;">
-  <table class="dashboard-table">
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>Balance</th>
-            <th>Account Limit</th>
-            <th>Create Time</th>
-            <th>Update</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-</table>
-</div>
-
-
-
-
 <script>
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");

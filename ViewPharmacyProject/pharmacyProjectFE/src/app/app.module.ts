@@ -14,6 +14,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
+import { PharmacyComponent } from './pharmacy/pharmacy.component';
+import { MedicinesComponent } from './medicines/medicines.component';
+import { SalesComponent } from './sales/sales.component';
+import { ShelfsComponent } from './shelfs/shelfs.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -23,7 +28,12 @@ import {MatInputModule} from '@angular/material/input';
     UserRegisterComponent,
     MainComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PharmacyComponent,
+    MedicinesComponent,
+    SalesComponent,
+    ShelfsComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
