@@ -12,7 +12,6 @@ import { UserEdit } from 'src/models/userDTO/userEdit';
 })
 export class UserService {
   readonly userUrl = "http://localhost:7777/users";
-  private apiServerUrl=``;
   constructor(private httpClient: HttpClient) { }
 
   public register(userRegister:UserRegister):Observable<UserRegister>{
@@ -29,5 +28,5 @@ export class UserService {
   public editUser(userEdit:UserEdit):Observable<any>{
     return this.httpClient.put<any>(`${this.userUrl}/edit`,userEdit,{withCredentials:true});
   }
-
+ 
 }
