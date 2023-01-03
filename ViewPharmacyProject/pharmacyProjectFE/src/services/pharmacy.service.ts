@@ -15,10 +15,8 @@ export class PharmacyService {
   public createPharmacy(pharmacy:Pharmacy):Observable<any>{
     return this.httpClient.post<Pharmacy>(`${this.pharmacyUrl}`,pharmacy,{withCredentials:true});
   }
-  
   public addPharmacist(pharmacist:UserOnlyEmail):Observable<any>{
     return this.httpClient.post<UserOnlyEmail>(`${this.pharmacyUrl}/pharmacist`,pharmacist,{withCredentials: true});
-    // .pipe(retry(1),catchError(this.handleError));
   }
   public deletePharmacistFromPharmacy(pharmacistId:Number):Observable<any>{
     return this.httpClient.delete<any>(`${this.pharmacyUrl}/pharmacist/`+pharmacistId,{withCredentials:true});
