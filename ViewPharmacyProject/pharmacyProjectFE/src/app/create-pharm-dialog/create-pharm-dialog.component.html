@@ -1,0 +1,32 @@
+<h1>Create Pharmacy</h1>
+<div mat-dialog-content id="pharmacyDialog">
+    <form id="createPharmacyForm" #form="ngForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput name="name" [(ngModel)]="pharmacy.name">
+    </mat-form-field>
+      <div>
+        <span class="error" *ngIf="hasErrorForNotEmptyName">Name must be not empty</span>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Address</mat-label>
+        <input matInput name="address" [(ngModel)]="pharmacy.address">
+      </mat-form-field>
+      <div>
+        <span class="error" *ngIf="hasErrorForNotEmptyAddress">Address must be not empty</span>
+      </div>
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Account Limit</mat-label>
+        <input matInput name="accountLimit" [(ngModel)]="account.accLimit">
+      </mat-form-field> -->
+      <div>
+        <!-- <span class="error" *ngIf="hasErrorForLimit">Account limit must be positive</span>
+        <span class="error" *ngIf="hasErrorMsg">Account limit must be more than balance</span>
+        <span class="error" *ngIf="hasErrorMsgForAccountExisting">Account with such name already exists</span> -->
+      </div>
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 8px;"mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+</div>

@@ -12,6 +12,7 @@ import com.pharmacy.demo.models.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -72,6 +73,12 @@ public class PharmacyService {
 
     public List<User> getAllPharmacists(int userId) {
         User user = checkWhetherIsAdmin(userId);
+        if(user.getPharmacy()==null){
+            throw new BadRequestException("User doesn't have pharmacy");
+        }
+        if(user.getPharmacy().getUsers()==null){
+            throw new BadRequestException("Pharmacy doesn't have pharmacists");
+        }
         return user.getPharmacy().getUsers().stream().filter(u -> u.getRole().equals("USER")).collect(Collectors.toList());
     }
 
@@ -96,12 +103,15 @@ public class PharmacyService {
         return user;
     }
 
-    public Pharmacy getById(int userId) {
+    public Pharmacy getByUserId(int userId) {
         Optional<User> optUser = userRepository.findById(userId);
         if (optUser.isEmpty()) {
             throw new NotFoundException("User not found");
         }
         User user = optUser.get();
+        if(user.getPharmacy()==null){
+            throw new BadRequestException("User doesn't have pharmacy");
+        }
         return user.getPharmacy();
     }
 }

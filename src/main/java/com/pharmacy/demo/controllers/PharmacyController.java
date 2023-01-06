@@ -64,7 +64,7 @@ public class PharmacyController extends AbstractController {
     @GetMapping("/pharmacy")
     public PharmacyDTO getById(HttpSession session){
         int userId=sessionManager.getLoggedId(session);
-        Pharmacy pharmacy=pharmacyService.getById(userId);
+        Pharmacy pharmacy=pharmacyService.getByUserId(userId);
         return EntityToDTOConverter.convertToPharmacyDTO(pharmacy);
     }
 

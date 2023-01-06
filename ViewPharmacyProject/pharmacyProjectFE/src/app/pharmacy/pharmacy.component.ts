@@ -6,6 +6,8 @@ import { UserService } from 'src/services/user.service';
 import {MatButtonModule} from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { PharmacyService } from 'src/services/pharmacy.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CreatePharmDialogComponent } from '../create-pharm-dialog/create-pharm-dialog.component';
 
 @Component({
   selector: 'app-pharmacy',
@@ -22,7 +24,8 @@ export class PharmacyComponent implements OnInit {
   constructor(private pharmacyService:PharmacyService,
               private userService:UserService,
               private route: ActivatedRoute,
-              private router:Router) { }
+              private router:Router,
+              private dialog:MatDialog) { }
 
   ngOnInit(): void {
 
@@ -33,6 +36,9 @@ export class PharmacyComponent implements OnInit {
   getPharmacists(){
     this.pharmacyService.getAllPharmacists().subscribe(response=>{
       this.pharmacists=response;
+    },
+    err=>{
+        alert("You don't have pharmacy please create Pharmacy")
     }
     )
   }
@@ -67,6 +73,9 @@ export class PharmacyComponent implements OnInit {
       
       }
     )
+  }
+  addPharmacy(){
+    this.dialog.open(CreatePharmDialogComponent);
   }
  
 }

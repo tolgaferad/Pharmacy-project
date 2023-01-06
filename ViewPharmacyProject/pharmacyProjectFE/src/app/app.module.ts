@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserLoginComponent } from './user-login/user-login.component';
@@ -17,6 +17,10 @@ import { ShelfsComponent } from './shelfs/shelfs.component';
 import { UserComponent } from './user/user.component';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CreatePharmDialogComponent } from './create-pharm-dialog/create-pharm-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -31,7 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MedicinesComponent,
     SalesComponent,
     ShelfsComponent,
-    UserComponent
+    UserComponent,
+    CreatePharmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     MatTableModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
