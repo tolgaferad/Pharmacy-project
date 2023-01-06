@@ -4,6 +4,8 @@ import {ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { User } from 'src/models/userDTO/user';
 import {MatTableModule} from '@angular/material/table';
+import { PharmacyService } from 'src/services/pharmacy.service';
+import { Pharmacy } from 'src/models/pharmacyDTO/pharmacy';
 
 
 
@@ -30,9 +32,14 @@ export class MainComponent implements OnInit {
       createTime:'',
       role:'',
     }
+  pharmacy:Pharmacy={
+    name:'',
+    address:''
+  }
   constructor(private route: ActivatedRoute,
               private userService:UserService,
-              private router:Router
+              private router:Router,
+              private pharmacyService:PharmacyService
               ) { }
 
   ngOnInit(): void {
@@ -40,6 +47,8 @@ export class MainComponent implements OnInit {
       // this.userId = params['id'];
     });
     this.getUser();
+    this.getPharmacy();
+
   }
   getUser(){
     this.userService.getUser().subscribe(
@@ -48,6 +57,19 @@ export class MainComponent implements OnInit {
         this.user.name=response.name;
         console.log(response.role);
         this.checkWhetherIsAdmin(response.role);
+        console.log(response);
+      },
+      err => {
+        console.log(err.error)
+      
+      }
+    )
+  }
+  getPharmacy(){
+    this.pharmacyService.getPharmacy().subscribe(
+      response => {
+        this.pharmacy.name=response.name;
+        this.pharmacy.address=response.address;
         console.log(response);
       },
       err => {

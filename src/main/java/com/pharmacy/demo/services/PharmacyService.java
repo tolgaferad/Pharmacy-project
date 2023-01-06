@@ -95,4 +95,13 @@ public class PharmacyService {
         }
         return user;
     }
+
+    public Pharmacy getById(int userId) {
+        Optional<User> optUser = userRepository.findById(userId);
+        if (optUser.isEmpty()) {
+            throw new NotFoundException("User not found");
+        }
+        User user = optUser.get();
+        return user.getPharmacy();
+    }
 }

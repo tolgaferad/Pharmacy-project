@@ -28,4 +28,7 @@ export class PharmacyService {
   public editPharmacy(pharmacy:Pharmacy):Observable<any>{
     return this.httpClient.put<any>(`${this.pharmacyUrl}`,pharmacy,{withCredentials:true});
   }
+  public getPharmacy():Observable<any>{
+    return this.httpClient.get<any>(`${this.pharmacyUrl}`,{withCredentials:true});
+  }
 }
