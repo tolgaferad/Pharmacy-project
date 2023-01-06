@@ -17,13 +17,17 @@ export class PharmacyComponent implements OnInit {
   pharmacists:User[]=[];
   selectedId!:number;
   user!:User;
+  isDisabled!:boolean;
   selectedUser!:User;
   constructor(private pharmacyService:PharmacyService,
+              private userService:UserService,
               private route: ActivatedRoute,
               private router:Router) { }
 
   ngOnInit(): void {
+
     this.getPharmacists();
+    this.getUser();
   }
   displayedColumns: string[] = ['name', 'username', 'email', 'createTime'];
   getPharmacists(){
@@ -34,7 +38,6 @@ export class PharmacyComponent implements OnInit {
   }
   onSelect(row:any){
     this.selectedId=row.id;
-
     console.log(row);
     console.log("Selected item Id: ", this.selectedId)
   }
@@ -51,6 +54,19 @@ export class PharmacyComponent implements OnInit {
 
       }
     );
+  }
+  getUser(){
+    this.userService.getUser().subscribe(
+      response => {
+        if(response.pharmacyId!=0){
+          this.isDisabled=true;
+        }
+      },
+      err => {
+        console.log(err.error)
+      
+      }
+    )
   }
  
 }

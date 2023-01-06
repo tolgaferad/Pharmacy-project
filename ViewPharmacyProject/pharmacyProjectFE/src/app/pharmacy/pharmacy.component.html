@@ -17,11 +17,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <body class="w3-light-grey">
     <!-- !PAGE CONTENT! -->
     <div  class="w3-main" style="margin-left:330px;margin-top:50px;">
-        <button  style= "position:center; left:10px; width:140px" mat-flat-button color="primary" >Create Pharmacy</button>
+        <button  style= "position:center; left:10px; width:140px" [disabled]="isDisabled" mat-flat-button color="primary">Create Pharmacy</button>
         <button style= "position:center; left:20px;width:140px" mat-flat-button color="primary">Edit pharmacy</button>
     </div>
     <div style="margin-left:190px;margin-top:20px;">
-        <button  style= "left:150px; width:140px" mat-raised-button color="success">Add Pharmacist</button>
+        <button  style= "left:150px; width:140px"  mat-raised-button color="success">Add Pharmacist</button>
         <button  style= "left:160px;width:140px" (click)="deletePharmacist(selectedId)" mat-raised-button color="success">Delete pharmacist</button>        
     </div>
     <div style="margin-left:400px;margin-top:50px;">
