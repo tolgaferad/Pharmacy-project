@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Pharmacy } from 'src/models/pharmacyDTO/pharmacy';
 import { UserOnlyEmail } from 'src/models/userDTO/userOnlyEmail';
+import{User} from 'src/models/userDTO/user';
 
 @Injectable({
   providedIn: 'root'

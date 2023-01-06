@@ -17,7 +17,49 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <body class="w3-light-grey">
     <!-- !PAGE CONTENT! -->
     <div  class="w3-main" style="margin-left:330px;margin-top:50px;">
-        <a>blabla</a>
+        <button  style= "position:center; left:10px; width:140px" mat-flat-button color="primary" >Create Pharmacy</button>
+        <button style= "position:center; left:20px;width:140px" mat-flat-button color="primary">Edit pharmacy</button>
+    </div>
+    <div style="margin-left:190px;margin-top:20px;">
+        <button  style= "left:150px; width:140px" mat-raised-button color="success">Add Pharmacist</button>
+        <button  style= "left:160px;width:140px" (click)="deletePharmacist(selectedId)" mat-raised-button color="success">Delete pharmacist</button>        
+    </div>
+    <div style="margin-left:400px;margin-top:50px;">
+        <strong>Pharmacists:</strong>
+        <div><br></div>
+        <table mat-table [dataSource]="pharmacists" class="mat-elevation-z8 demo-table">
+            <!-- Position Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="username">
+              <th mat-header-cell *matHeaderCellDef>Username</th>
+              <td mat-cell *matCellDef="let element">{{element.username}}</td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef>Email</th>
+              <td mat-cell *matCellDef="let element">{{element.email}}</td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="createTime">
+              <th mat-header-cell *matHeaderCellDef>Create Time</th>
+              <td mat-cell *matCellDef="let element">{{element.createTime}}</td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+      mat-row [ngClass]="{'highlight': selectedId == row.id}"
+      (click)="onSelect(row)"
+      *matRowDef="let row; columns: displayedColumns;"
+  ></tr>
+          </table>
+          
     </div>
     <script>
     HTMLImporter.import("main.component.html");

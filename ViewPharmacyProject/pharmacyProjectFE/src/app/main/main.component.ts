@@ -3,7 +3,6 @@ import { UserService } from 'src/services/user.service';
 import {ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { User } from 'src/models/userDTO/user';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 
 
@@ -33,7 +32,6 @@ export class MainComponent implements OnInit {
     }
   constructor(private route: ActivatedRoute,
               private userService:UserService,
-              private dialog:MatDialog,
               private router:Router
               ) { }
 
