@@ -23,8 +23,8 @@ export class CreatePharmDialogComponent implements OnInit {
   // hasErrorMsgForAccountExisting:boolean=false;
   constructor(public dialog: MatDialog,
               private pharmacyService:PharmacyService,
-    private router: Router,
-    public dialogRef: MatDialogRef<CreatePharmDialogComponent>) { }
+              private router: Router,
+              public dialogRef: MatDialogRef<CreatePharmDialogComponent>) { }
 
   ngOnInit(): void {
 

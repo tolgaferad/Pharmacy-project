@@ -21,6 +21,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CreatePharmDialogComponent } from './create-pharm-dialog/create-pharm-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { AddPharmacistDialogComponent } from './add-pharmacist-dialog/add-pharmacist-dialog.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {MatInputModule} from '@angular/material/input';
     SalesComponent,
     ShelfsComponent,
     UserComponent,
-    CreatePharmDialogComponent
+    CreatePharmDialogComponent,
+    AddPharmacistDialogComponent
   ],
   imports: [
     BrowserModule,

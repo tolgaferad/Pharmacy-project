@@ -8,6 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { PharmacyService } from 'src/services/pharmacy.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePharmDialogComponent } from '../create-pharm-dialog/create-pharm-dialog.component';
+import { AddPharmacistDialogComponent } from '../add-pharmacist-dialog/add-pharmacist-dialog.component';
 
 @Component({
   selector: 'app-pharmacy',
@@ -76,6 +77,9 @@ export class PharmacyComponent implements OnInit {
   }
   addPharmacy(){
     this.dialog.open(CreatePharmDialogComponent);
+  }
+  addPharmacist(){
+    this.dialog.open(AddPharmacistDialogComponent);
   }
  
 }

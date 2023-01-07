@@ -1,0 +1,20 @@
+<h1>Add Pharmacist</h1>
+<div mat-dialog-content id="createPharmacistDialog">
+    <form id="createPharmacistForm" #form="ngForm">
+    <mat-form-field appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input matInput name="name" [(ngModel)]="userOnlyEmail.email">
+    </mat-form-field>
+      <div>
+        <span class="error" *ngIf="hasErrorForNotEmptyEmail">Email must be not empty</span>
+        <span class="error" *ngIf="hasErrorForNotValidEmail">Email format is not valid</span>
+        <span class="error" *ngIf="hasErrorForNotFoundPharmacist">Pharmacist with this email not found</span>
+        <span class="error" *ngIf="hasErrorForAdminPharmacist">Pharmacist is admin, or you are trying to add yourself</span>
+        <span class="error" *ngIf="hasErrorForPharmacistAlreadyHasPharmacy">Pharmacist already has pharmacy or exists in your pharmacy</span>
+      </div>
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 8px;"mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+</div>

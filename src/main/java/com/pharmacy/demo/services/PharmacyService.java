@@ -38,6 +38,9 @@ public class PharmacyService {
         if (userByEmail.getRole().equals("ADMIN")) {
             throw new BadRequestException("You cannot add admins of other pharmacies");
         }
+        if(userByEmail.getPharmacy()!=null) {
+            throw new BadRequestException("User already has pharmacy");
+        }
         pharmacy.getUsers().add(userByEmail);
         userByEmail.setPharmacy(pharmacy);
         pharmacyRepository.save(pharmacy);
