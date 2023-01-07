@@ -23,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { AddPharmacistDialogComponent } from './add-pharmacist-dialog/add-pharmacist-dialog.component';
 import { EditPharmacyDialogComponent } from './edit-pharmacy-dialog/edit-pharmacy-dialog.component';
+import {MatPaginator} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { EditPharmacyDialogComponent } from './edit-pharmacy-dialog/edit-pharmac
     UserComponent,
     CreatePharmDialogComponent,
     AddPharmacistDialogComponent,
-    EditPharmacyDialogComponent
+    EditPharmacyDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +54,7 @@ import { EditPharmacyDialogComponent } from './edit-pharmacy-dialog/edit-pharmac
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 export interface ResponseMedicine{
+    id:number,
     name:string,
     barcode:string,
     strength:string,

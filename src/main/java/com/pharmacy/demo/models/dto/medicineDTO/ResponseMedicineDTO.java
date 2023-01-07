@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @Component
 public class ResponseMedicineDTO {
+    private int id;
     private String name;
     private String barcode;
     private String strength;
@@ -26,6 +27,7 @@ public class ResponseMedicineDTO {
     private String pharmacyName;
 
     public ResponseMedicineDTO(Medicine medicine) {
+        this.id=medicine.getId();
         this.name = medicine.getName();
         this.barcode = medicine.getBarcode();
         this.strength = medicine.getStrength();
