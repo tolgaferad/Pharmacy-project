@@ -43,10 +43,7 @@ export class AddPharmacistDialogComponent implements OnInit {
         this.hasErrorForNotFoundPharmacist = false;
         this.hasErrorForAdminPharmacist = false;
         this.hasErrorForPharmacistAlreadyHasPharmacy=false;
-      //     // this.hasErrorForPositiveBalance = false;
-      //     // this.hasErrorForNotEmpty=false;
-      //     // this.hasErrorMsg=false;
-      //     // this.hasErrorMsgForAccountExisting=false;
+        
       if (err.error!= null) {
       
       if (err.error.email != null) {
@@ -70,7 +67,7 @@ export class AddPharmacistDialogComponent implements OnInit {
           this.hasErrorForPharmacistAlreadyHasPharmacy=true;
         }
       }
-      
+
     }
   }
       

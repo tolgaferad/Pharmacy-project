@@ -3,6 +3,7 @@ package com.pharmacy.demo.services;
 import com.pharmacy.demo.exceptions.BadRequestException;
 import com.pharmacy.demo.exceptions.NotFoundException;
 import com.pharmacy.demo.exceptions.UnauthorizedException;
+import com.pharmacy.demo.models.dto.pharmacyDTO.EditPharmacyDTO;
 import com.pharmacy.demo.models.dto.pharmacyDTO.PharmacyDTO;
 import com.pharmacy.demo.models.dto.userDTO.UserOnlyEmailDTO;
 import com.pharmacy.demo.models.pojo.Pharmacy;
@@ -85,9 +86,10 @@ public class PharmacyService {
         return user.getPharmacy().getUsers().stream().filter(u -> u.getRole().equals("USER")).collect(Collectors.toList());
     }
 
-    public Pharmacy edit(PharmacyDTO pharmacyDTO, int userId) {
+    public Pharmacy edit(EditPharmacyDTO pharmacyDTO, int userId) {
         User user = checkWhetherIsAdmin(userId);
         Pharmacy pharmacy = user.getPharmacy();
+
         pharmacy.setName(pharmacyDTO.getName());
         pharmacy.setAddress(pharmacy.getAddress());
         pharmacyRepository.save(pharmacy);

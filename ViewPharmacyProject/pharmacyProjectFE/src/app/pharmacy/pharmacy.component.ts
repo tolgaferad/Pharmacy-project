@@ -9,6 +9,7 @@ import { PharmacyService } from 'src/services/pharmacy.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePharmDialogComponent } from '../create-pharm-dialog/create-pharm-dialog.component';
 import { AddPharmacistDialogComponent } from '../add-pharmacist-dialog/add-pharmacist-dialog.component';
+import { EditPharmacyDialogComponent } from '../edit-pharmacy-dialog/edit-pharmacy-dialog.component';
 
 @Component({
   selector: 'app-pharmacy',
@@ -80,6 +81,9 @@ export class PharmacyComponent implements OnInit {
   }
   addPharmacist(){
     this.dialog.open(AddPharmacistDialogComponent);
+  }
+  editPharmacy(){
+    this.dialog.open(EditPharmacyDialogComponent);
   }
  
 }

@@ -1,6 +1,7 @@
 package com.pharmacy.demo.controllers;
 
 
+import com.pharmacy.demo.models.dto.pharmacyDTO.EditPharmacyDTO;
 import com.pharmacy.demo.models.dto.pharmacyDTO.PharmacyDTO;
 import com.pharmacy.demo.models.dto.userDTO.UserOnlyEmailDTO;
 import com.pharmacy.demo.models.dto.userDTO.UserWithoutPasswordDTO;
@@ -56,7 +57,7 @@ public class PharmacyController extends AbstractController {
     }
 
     @PutMapping("/pharmacy")
-    public PharmacyDTO edit(@Valid @RequestBody PharmacyDTO pharmacyDTO, HttpSession session) {
+    public PharmacyDTO edit(@Valid @RequestBody EditPharmacyDTO pharmacyDTO, HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
         Pharmacy pharmacy= pharmacyService.edit(pharmacyDTO,userId);
         return EntityToDTOConverter.convertToPharmacyDTO(pharmacy);
