@@ -28,7 +28,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <div style="margin-left:400px;margin-top:50px;">
             <strong>Medicines:</strong>
             <div><br></div>
-            <table mat-table [dataSource]="medicines" class="mat-elevation-z8 demo-table">
+            <mat-form-field appearance="standard">
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+              </mat-form-field>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
                 <!-- Position Column -->
                 <ng-container matColumnDef="name">
                   <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -55,7 +59,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                   </ng-container>
                   <!-- Name Column -->
                   <ng-container matColumnDef="price">
-                    <th mat-header-cell *matHeaderCellDef>priceth>
+                    <th mat-header-cell *matHeaderCellDef>Price</th>
                     <td mat-cell *matCellDef="let element">{{element.price}}</td>
                   </ng-container>
                   <!-- Weight Column -->
@@ -77,6 +81,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           *matRowDef="let row; columns: displayedColumns;"
       ></tr>
         </table>
+        <mat-paginator [pageSizeOptions]="[5,10,20]" aria-label="Select page of users"></mat-paginator>
         
         </div>
 </body>
