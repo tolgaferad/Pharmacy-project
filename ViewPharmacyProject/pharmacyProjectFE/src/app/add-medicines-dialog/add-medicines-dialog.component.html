@@ -1,1 +1,58 @@
-<p>add-medicines-dialog works!</p>
+<h1>Add Medicines</h1>
+<div mat-dialog-content id="addMedicinesComponent">
+    <form id="addMedicinesForm" #form="ngForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput name="name" [(ngModel)]="medicine.name">
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="margin-left: 10px;">
+        <mat-label>Strength</mat-label>
+        <input matInput name="strength" [(ngModel)]="medicine.strength">
+    </mat-form-field>
+      <div>
+        <!-- <span class="error" *ngIf="hasErrorForNotEmptyName">Name must be not empty</span> -->
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Manufacturer</mat-label>
+        <input matInput name="manufacturer" [(ngModel)]="medicine.manufacturer">
+      </mat-form-field>
+     
+      <mat-form-field appearance="fill" style="margin-left: 10px;">
+        <mat-label>Details</mat-label>
+        <input matInput name="details" [(ngModel)]="medicine.details">
+        <div>
+            <!-- <span class="error" *ngIf="hasErrorForNotEmptyName">Name must be not empty</span> -->
+        </div>
+    </mat-form-field>
+      <div>
+        <!-- <span class="error" *ngIf="hasErrorForNotEmptyName">Name must be not empty</span> -->
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input matInput name="price" [(ngModel)]="medicine.price">
+      </mat-form-field>
+      <div>
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Expiry date</mat-label>
+        <input  matInput name="expiryDate" [matDatepicker]="picker" [(ngModel)]="medicine.expiryDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker [(ngModel)]="medicine.expiryDate" ngDefaultControl (selectedChanged)="onDate($event)"></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="margin-left: 10px;">
+        <mat-label>Quantity</mat-label>
+        <input matInput name="quantity" [(ngModel)]="medicine.quantity">
+      </mat-form-field>
+      <div>
+        <!-- <span class="error" *ngIf="hasErrorForNotEmptyEmail">Email must be not empty</span>
+        <span class="error" *ngIf="hasErrorForNotValidEmail">Email format is not valid</span>
+        <span class="error" *ngIf="hasErrorForNotFoundPharmacist">Pharmacist with this email not found</span>
+        <span class="error" *ngIf="hasErrorForAdminPharmacist">Pharmacist is admin, or you are trying to add yourself</span>
+        <span class="error" *ngIf="hasErrorForPharmacistAlreadyHasPharmacy">Pharmacist already has pharmacy or exists in your pharmacy</span> -->
+      </div>
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 8px;"mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+</div>

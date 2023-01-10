@@ -26,6 +26,9 @@ import { EditPharmacyDialogComponent } from './edit-pharmacy-dialog/edit-pharmac
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { AddMedicinesDialogComponent } from './add-medicines-dialog/add-medicines-dialog.component';
 import { AddMedicineToShelfDialogComponent } from './add-medicine-to-shelf-dialog/add-medicine-to-shelf-dialog.component';
+import {MatDatepicker, MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -61,8 +64,10 @@ import { AddMedicineToShelfDialogComponent } from './add-medicine-to-shelf-dialo
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatPaginatorModule
-    
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

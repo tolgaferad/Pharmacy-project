@@ -18,13 +18,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <!-- !PAGE CONTENT! -->
     <div  class="w3-main" style="margin-left:330px;margin-top:50px;">
             <button  style= "position:center; left:10px; width:140px" (click)="addMedicines()" mat-flat-button color="primary">Add Medicines</button>
-            <button  style= "position:center; left:20px; width:140px" (click)="editMedicine(selectedId)" mat-flat-button color="primary">Edit Medicine</button>
+            <button  style= "left:20px; width:140px"  (click)="addToShelf()" mat-raised-button color="success">Add to shelf</button>
+            <button  style= "left:30px;;width:140px" (click)="deleteMedicine(selectedId)" mat-raised-button color="success">Delete medicine</button>   
     </div>
-        <div style="margin-left:190px;margin-top:20px;">
-            <button  style= "left:150px; width:140px"  (click)="addToShelf()" mat-raised-button color="success">Add to shelf</button>
-            <button  style= "left:160px;width:140px" (click)="deleteMedicine(selectedId)" mat-raised-button color="success">Delete medicine</button>        
-        </div>
-        
         <div style="margin-left:400px;margin-top:50px;">
             <strong>Medicines:</strong>
             <div><br></div>

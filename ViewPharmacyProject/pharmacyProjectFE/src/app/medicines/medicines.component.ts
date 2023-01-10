@@ -4,6 +4,9 @@ import { MedicineService } from 'src/services/medicine.service';
 import {MatTableDataSource} from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { AddMedicinesDialogComponent } from '../add-medicines-dialog/add-medicines-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AddMedicineToShelfDialogComponent } from '../add-medicine-to-shelf-dialog/add-medicine-to-shelf-dialog.component';
 @Component({
   selector: 'app-medicines',
   templateUrl: './medicines.component.html',
@@ -45,22 +48,38 @@ export class MedicinesComponent implements OnInit {
     shelfName:'',
   }
   displayedColumns: string[] = ['name', 'barcode', 'strength', 'manufacturer','details', 'price', 'expiryDate', 'shelfName'];
-  constructor(public medicineService:MedicineService) { }
+  constructor(public medicineService:MedicineService,
+              private dialog:MatDialog,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.getMedicines();
   }
   addMedicines(){
-
+    this.dialog.open(AddMedicinesDialogComponent);
   }
   editMedicine(medicineId:number){
     
   }
   addToShelf(){
-
+    this.dialog.open(AddMedicineToShelfDialogComponent,{
+      width:'100%'
+    });
   }
   deleteMedicine(medicineId:number){
+      this.medicineService.deleteMedicine(medicineId).subscribe(
+        response=>{
+            console.log(response);
+          let currentUrl = this.router.url
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate([currentUrl]);
+        },
+        err =>{
 
+        }
+      );
+    
   }
   getMedicines(){
     this.medicineService.getByPharmacy().subscribe(response=>{

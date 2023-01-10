@@ -14,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 public class ResponseShelfDTO {
+    private int id;
     private String name;
     private List<ResponseMedicineDTO> medicines;
     private String pharmacyName;

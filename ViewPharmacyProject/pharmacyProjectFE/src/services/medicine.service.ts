@@ -22,7 +22,7 @@ export class MedicineService {
     return this.httpClient.get<any>(`${this.pharmacyUrl}/pharmacy/`,{withCredentials:true});
   }
   public addToShelf(medicineId:number, shelfId:number):Observable<any>{
-    return this.httpClient.post<any>(`${this.pharmacyUrl}/`+medicineId+'/shelfs/'+shelfId,{withCredentials:true});
+    return this.httpClient.get<any>(`${this.pharmacyUrl}/`+medicineId+'/shelfs/'+shelfId,{withCredentials:true});
   }
   public editMedicine(medicineId:number,editMedicine:EditMedicine){
     return this.httpClient.put<EditMedicine>(`${this.pharmacyUrl}/`+medicineId,editMedicine,{withCredentials:true})
