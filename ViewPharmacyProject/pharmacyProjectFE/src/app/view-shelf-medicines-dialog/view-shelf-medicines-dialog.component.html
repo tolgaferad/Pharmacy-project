@@ -1,0 +1,49 @@
+<h1>Shelf medicines</h1>
+<div mat-dialog-content id="getShelfMedicinesDialog">
+    <div style="margin: top 20px;">
+        <strong>Medicines:</strong>
+        <div><br></div>
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+          </mat-form-field>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+            <!-- Position Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="barcode">
+              <th mat-header-cell *matHeaderCellDef>Barcode</th>
+              <td mat-cell *matCellDef="let element">{{element.barcode}}</td>
+            </ng-container>
+            <!-- Weight Column -->          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="manufacturer">
+              <th mat-header-cell *matHeaderCellDef>Manufacturer</th>
+              <td mat-cell *matCellDef="let element">{{element.manufacturer}}</td>
+            </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>Price</th>
+                <td mat-cell *matCellDef="let element">{{element.price}}</td>
+              </ng-container>
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="shelfName">
+                <th mat-header-cell *matHeaderCellDef>Shelf Name</th>
+                <td mat-cell *matCellDef="let element">{{element.shelfName}}</td>
+              </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+      mat-row [ngClass]="{'highlight': selectedId == row.id}"
+      *matRowDef="let row; columns: displayedColumns;"
+    ></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5,10,20]" aria-label="Select page of users"></mat-paginator>
+    </div>
+    <div mat-dialog-action [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+        <!-- <button style="margin-left: 8px;"mat-raised-button color="primary" (click)="onSubmit()">Save</button> -->
+    </div>
+</div>

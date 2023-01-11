@@ -31,6 +31,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { AddShelfDialogComponent } from './add-shelf-dialog/add-shelf-dialog.component';
+import { ViewShelfMedicinesDialogComponent } from './view-shelf-medicines-dialog/view-shelf-medicines-dialog.component';
 
 
 
@@ -53,6 +54,7 @@ import { AddShelfDialogComponent } from './add-shelf-dialog/add-shelf-dialog.com
     AddMedicinesDialogComponent,
     AddMedicineToShelfDialogComponent,
     AddShelfDialogComponent,
+    ViewShelfMedicinesDialogComponent,
     
   ],
   imports: [

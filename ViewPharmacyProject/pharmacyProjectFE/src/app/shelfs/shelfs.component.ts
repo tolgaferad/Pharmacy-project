@@ -6,7 +6,9 @@ import { Router } from '@angular/router';
 import { ResponseShelf } from 'src/models/shelfDTO/responseShelfDTO';
 import { MedicineService } from 'src/services/medicine.service';
 import { ShelfService } from 'src/services/shelf.service';
+import { AddMedicineToShelfDialogComponent } from '../add-medicine-to-shelf-dialog/add-medicine-to-shelf-dialog.component';
 import { AddShelfDialogComponent } from '../add-shelf-dialog/add-shelf-dialog.component';
+import { ViewShelfMedicinesDialogComponent } from '../view-shelf-medicines-dialog/view-shelf-medicines-dialog.component';
 
 @Component({
   selector: 'app-shelfs',
@@ -69,5 +71,11 @@ export class ShelfsComponent implements OnInit {
   addShelf(){
     this.dialog.open(AddShelfDialogComponent);
   }
-
+  viewMedicines(){
+    this.dialog.open(ViewShelfMedicinesDialogComponent, {
+      data:this.selectedId,
+      width:'100%'
+    });
+  }
+  
 }
