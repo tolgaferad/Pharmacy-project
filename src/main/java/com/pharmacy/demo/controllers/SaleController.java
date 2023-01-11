@@ -1,13 +1,9 @@
 package com.pharmacy.demo.controllers;
 
-import com.pharmacy.demo.models.dto.medicineDTO.AddMedicineDTO;
-import com.pharmacy.demo.models.dto.medicineDTO.ResponseMedicineDTO;
 import com.pharmacy.demo.models.dto.saleDTO.AddSaleDTO;
 import com.pharmacy.demo.models.dto.saleDTO.ResponseDeleteSaleDTO;
 import com.pharmacy.demo.models.dto.saleDTO.ResponseSaleDTO;
-import com.pharmacy.demo.models.pojo.Medicine;
 import com.pharmacy.demo.models.pojo.Sale;
-import com.pharmacy.demo.services.PharmacyService;
 import com.pharmacy.demo.services.SaleService;
 import com.pharmacy.demo.utils.EntityToDTOConverter;
 import com.pharmacy.demo.utils.SessionManager;
@@ -16,9 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.sql.Timestamp;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class SaleController extends AbstractController {

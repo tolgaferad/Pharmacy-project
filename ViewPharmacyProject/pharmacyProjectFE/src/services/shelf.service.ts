@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AddShelf } from 'src/models/shelfDTO/addShelf';
+import { ResponseShelf } from 'src/models/shelfDTO/responseShelfDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +15,13 @@ export class ShelfService {
   public getAllShelfs():Observable<any>{
     return this.httpClient.get<any>(`${this.shelfsUrl}/pharmacy`,{withCredentials:true});
   }
-  // public getByShelf(shelfId:number):Observable<any>{
-  //   return this.httpClient.get<AddMedicine>(`${this.pharmacyUrl}/shelfs/`+shelfId,{withCredentials:true});
-  // }
-  // public getByPharmacy():Observable<any>{
-  //   return this.httpClient.get<any>(`${this.pharmacyUrl}/pharmacy/`,{withCredentials:true});
-  // }
-  // public addToShelf(medicineId:number, shelfId:number):Observable<any>{
-  //   return this.httpClient.post<any>(`${this.pharmacyUrl}/`+medicineId+'/shelfs/'+shelfId,{withCredentials:true});
-  // }
-  // public editMedicine(medicineId:number,editMedicine:EditMedicine){
-  //   return this.httpClient.put<EditMedicine>(`${this.pharmacyUrl}/`+medicineId,editMedicine,{withCredentials:true})
-  // }
-  // public deleteMedicine(medicineId:number):Observable<any>{
-  //   return this.httpClient.delete<any>(`${this.pharmacyUrl}/`+medicineId,{withCredentials:true});
-  // }
+  public getById(shelfId:number):Observable<any>{
+     return this.httpClient.get<ResponseShelf>(`${this.shelfsUrl}/`+shelfId,{withCredentials:true});
+  }
+  public addShelf(addShelf:AddShelf):Observable<any>{
+    return this.httpClient.post<ResponseShelf>(`${this.shelfsUrl}`,addShelf,{withCredentials:true});
+  }
+  public delete(shelfId:number):Observable<any>{
+    return this.httpClient.delete<any>(`${this.shelfsUrl}/`+shelfId,{withCredentials:true});
+  }
 }

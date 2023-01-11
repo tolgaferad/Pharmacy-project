@@ -29,6 +29,8 @@ import { AddMedicineToShelfDialogComponent } from './add-medicine-to-shelf-dialo
 import {MatDatepicker, MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+import { AddShelfDialogComponent } from './add-shelf-dialog/add-shelf-dialog.component';
 
 
 
@@ -50,6 +52,7 @@ import { MatSelectModule } from '@angular/material/select';
     EditPharmacyDialogComponent,
     AddMedicinesDialogComponent,
     AddMedicineToShelfDialogComponent,
+    AddShelfDialogComponent,
     
   ],
   imports: [
@@ -67,7 +70,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatPaginatorModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,5 @@
 package com.pharmacy.demo.controllers;
 
-import com.pharmacy.demo.models.dto.saleDTO.AddSaleDTO;
 import com.pharmacy.demo.models.dto.shelfDTO.AddShelfDTO;
 import com.pharmacy.demo.models.dto.shelfDTO.ResponseDeleteShelfDTO;
 import com.pharmacy.demo.models.dto.shelfDTO.ResponseShelfDTO;

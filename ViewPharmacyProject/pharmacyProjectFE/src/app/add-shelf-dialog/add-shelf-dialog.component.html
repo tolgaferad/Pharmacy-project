@@ -1,0 +1,23 @@
+<h1>Add shelfs</h1>
+<div mat-dialog-content id="addShelfsComponent">
+    <form id="addShelfsForm" #form="ngForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput name="name" [(ngModel)]="shelf.name">
+    </mat-form-field>
+    <div>
+        <!-- <span class="error" *ngIf="hasErrorForNotEmptyName">Name must be not empty</span> -->
+    </div>
+    <mat-form-field appearance="fill" style="margin-left: 10px;">
+        <mat-label>Strength</mat-label>
+        <input matInput name="strength" [(ngModel)]="shelf.capacity">
+    </mat-form-field>
+      <div>
+        <!-- <span class="error" *ngIf="hasErrorForNotEmptyName">Name must be not empty</span> -->
+      </div>
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 8px;"mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+</div>

@@ -6,7 +6,6 @@ import com.pharmacy.demo.models.dto.saleDTO.AddSaleDTO;
 import com.pharmacy.demo.models.pojo.*;
 import com.pharmacy.demo.models.repository.SaleDetailRepository;
 import com.pharmacy.demo.models.repository.SaleRepository;
-import com.pharmacy.demo.models.repository.UserRepository;
 import com.pharmacy.demo.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

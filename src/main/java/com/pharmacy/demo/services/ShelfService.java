@@ -3,7 +3,6 @@ package com.pharmacy.demo.services;
 import com.pharmacy.demo.exceptions.BadRequestException;
 import com.pharmacy.demo.models.dto.shelfDTO.AddShelfDTO;
 import com.pharmacy.demo.models.pojo.Pharmacy;
-import com.pharmacy.demo.models.pojo.Sale;
 import com.pharmacy.demo.models.pojo.Shelf;
 import com.pharmacy.demo.models.pojo.User;
 import com.pharmacy.demo.models.repository.ShelfRepository;

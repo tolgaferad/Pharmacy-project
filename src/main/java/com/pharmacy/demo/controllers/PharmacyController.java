@@ -10,7 +10,6 @@ import com.pharmacy.demo.models.pojo.User;
 import com.pharmacy.demo.services.PharmacyService;
 import com.pharmacy.demo.utils.EntityToDTOConverter;
 import com.pharmacy.demo.utils.SessionManager;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

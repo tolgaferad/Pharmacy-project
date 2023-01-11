@@ -17,7 +17,41 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <body class="w3-light-grey">
     <!-- !PAGE CONTENT! -->
     <div  class="w3-main" style="margin-left:330px;margin-top:50px;">
-        <a>blabla</a>
+            <button  style= "position:center; left:10px; width:140px" (click)="addShelf()" mat-flat-button color="primary">Add shelf</button>
+            <button  style= "left:20px; width:140px"  (click)="deleteShelf(selectedId)" mat-raised-button color="success">Delete shelf</button>
     </div>
+        <div style="margin-left:400px;margin-top:50px;">
+            <strong>Shelfs:</strong>
+            <div><br></div>
+            <mat-form-field appearance="standard">
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+              </mat-form-field>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef>Id</th>
+                  <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef>Name</th>
+                  <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                </ng-container>
+                <!-- Weight Column -->
+                <ng-container matColumnDef="capacity">
+                  <th mat-header-cell *matHeaderCellDef>Capacity</th>
+                  <td mat-cell *matCellDef="let element">{{element.capacity}}</td>
+                </ng-container>              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+          mat-row [ngClass]="{'highlight': selectedId == row.id}"
+          (click)="onSelect(row)"
+          *matRowDef="let row; columns: displayedColumns;"
+      ></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5,10,20]" aria-label="Select page of shelfs"></mat-paginator>
+        
+        </div>
 </body>
 </html>

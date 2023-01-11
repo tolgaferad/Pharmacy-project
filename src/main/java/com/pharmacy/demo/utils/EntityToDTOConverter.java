@@ -11,8 +11,6 @@ import com.pharmacy.demo.models.dto.userDTO.UserWithoutPasswordDTO;
 import com.pharmacy.demo.models.pojo.*;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 public class EntityToDTOConverter {
     private static final ModelMapper modelMapper = new ModelMapper();
