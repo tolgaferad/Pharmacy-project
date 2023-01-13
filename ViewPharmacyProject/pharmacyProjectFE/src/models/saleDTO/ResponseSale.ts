@@ -5,6 +5,7 @@ export interface ResponseSale{
     name:string,
     price:string,
     createTime:string,
+    isConfirmed:string,
     pharmacyName:string,
     saleDetails:ResponseSaleDetail[];
 }

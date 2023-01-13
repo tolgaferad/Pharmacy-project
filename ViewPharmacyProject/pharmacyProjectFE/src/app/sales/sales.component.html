@@ -18,7 +18,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <!-- !PAGE CONTENT! -->
     <div  class="w3-main" style="margin-left:330px;margin-top:50px;">
         <button  style= "position:center; left:10px; width:140px" (click)="createSale()" mat-flat-button color="primary">Create sale</button>
-        <button  style= "left:20px; width:140px"  (click)="addMedicineToSale" mat-raised-button color="success">Add medicines</button>
+        <button  style= "left:20px; width:140px"  (click)="addMedicineToSale()" mat-raised-button color="success">Add medicines</button>
         <button  style= "left:30px;;width:140px" (click)="deleteSale(selectedId)" mat-raised-button color="success">Delete sale</button>  
     </div>
     <div style="margin-left:400px;margin-top:50px;">
@@ -44,8 +44,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
               <th mat-header-cell *matHeaderCellDef>Price</th>
               <td mat-cell *matCellDef="let element">{{element.price}}</td>
             </ng-container>
+            <ng-container matColumnDef="createTime">
+              <th mat-header-cell *matHeaderCellDef>Create Time</th>
+              <td mat-cell *matCellDef="let element">{{element.createTime}}</td>
+            </ng-container>
             <ng-container matColumnDef="isConfirmed">
-                <th mat-header-cell *matHeaderCellDef>isConfirmed</th>
+                <th mat-header-cell *matHeaderCellDef>Confirmed</th>
                 <td mat-cell *matCellDef="let element">{{element.isConfirmed}}</td>
               </ng-container>               
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -55,7 +59,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       *matRowDef="let row; columns: displayedColumns;"
   ></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5,10,20]" aria-label="Select page of shelfs"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5,10,20]" aria-label="Select page of sales"></mat-paginator>
     
     </div>
 </body>

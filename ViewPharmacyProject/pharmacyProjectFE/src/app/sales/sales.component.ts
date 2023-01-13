@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ResponseSale } from 'src/models/saleDTO/responseSale';
 import { SaleService } from 'src/services/sale.service';
+import { AddMedicineToSaleDialogComponent } from '../add-medicine-to-sale-dialog/add-medicine-to-sale-dialog.component';
+import { CreateSaleDialogComponent } from '../create-sale-dialog/create-sale-dialog.component';
 
 @Component({
   selector: 'app-sales',
@@ -16,7 +18,7 @@ export class SalesComponent implements OnInit {
   sales:ResponseSale[]=[];
   selectedId!:number;
   dataSource = new MatTableDataSource<ResponseSale>();
-  displayedColumns: string[] = ['id', 'name', 'price', 'isConfirmed'];
+  displayedColumns: string[] = ['id', 'name', 'price', 'createTime','isConfirmed'];
   constructor(public saleService:SaleService,
               private dialog:MatDialog,
               private router:Router) { }
@@ -25,10 +27,10 @@ export class SalesComponent implements OnInit {
     this.getSales();
   }
   createSale(){
-
+    this.dialog.open(CreateSaleDialogComponent);
   }
   addMedicineToSale(){
-
+    this.dialog.open(AddMedicineToSaleDialogComponent);
   }
   deleteSale(saleId:number){
     this.saleService.deleteSale(saleId).subscribe(

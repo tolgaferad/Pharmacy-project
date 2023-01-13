@@ -17,7 +17,7 @@ export class SaleService {
   public addMedicineToSale(medicineId:number, saleId:number):Observable<any>{
     return this.httpClient.get<any>(`${this.saleUrl}/`+saleId+'/medicines/'+medicineId,{withCredentials:true});
   }
-  public getAllByPharmacy(){
+  public getAllByPharmacy():Observable<any>{
     return this.httpClient.get<any>(`${this.saleUrl}/`,{withCredentials:true})
   }
   public deleteSale(saleId:number):Observable<any>{

@@ -27,6 +27,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { AddMedicinesDialogComponent } from './add-medicines-dialog/add-medicines-dialog.component';
 import { AddMedicineToShelfDialogComponent } from './add-medicine-to-shelf-dialog/add-medicine-to-shelf-dialog.component';
 import {MatDatepicker, MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
@@ -34,6 +35,7 @@ import { AddShelfDialogComponent } from './add-shelf-dialog/add-shelf-dialog.com
 import { ViewShelfMedicinesDialogComponent } from './view-shelf-medicines-dialog/view-shelf-medicines-dialog.component';
 import { CreateSaleDialogComponent } from './create-sale-dialog/create-sale-dialog.component';
 import { AddMedicineToSaleDialogComponent } from './add-medicine-to-sale-dialog/add-medicine-to-sale-dialog.component';
+import { SnackBarMessageForAddMedToSaleComponent } from './snack-bar-message-for-add-med-to-sale/snack-bar-message-for-add-med-to-sale.component';
 
 
 
@@ -59,6 +61,7 @@ import { AddMedicineToSaleDialogComponent } from './add-medicine-to-sale-dialog/
     ViewShelfMedicinesDialogComponent,
     CreateSaleDialogComponent,
     AddMedicineToSaleDialogComponent,
+    SnackBarMessageForAddMedToSaleComponent,
     
   ],
   imports: [
@@ -77,7 +80,9 @@ import { AddMedicineToSaleDialogComponent } from './add-medicine-to-sale-dialog/
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

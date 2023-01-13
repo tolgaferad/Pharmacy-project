@@ -3,5 +3,6 @@ export interface ResponseDeleteSale{
     name:string,
     price:string,
     createTime:string,
+    isConfirmed:boolean,
     pharmacyName:string,
 }

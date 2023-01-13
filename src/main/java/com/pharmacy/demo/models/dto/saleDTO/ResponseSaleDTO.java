@@ -16,6 +16,7 @@ public class ResponseSaleDTO {
     private int id;
     private String name;
     private int price;
+    private boolean isConfirmed;
     private Timestamp createTime;
     private String pharmacyName;
     private List<ResponseSaleDetailDTO> saleDetails;
