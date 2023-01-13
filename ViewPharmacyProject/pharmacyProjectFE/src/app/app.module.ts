@@ -32,6 +32,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { AddShelfDialogComponent } from './add-shelf-dialog/add-shelf-dialog.component';
 import { ViewShelfMedicinesDialogComponent } from './view-shelf-medicines-dialog/view-shelf-medicines-dialog.component';
+import { CreateSaleDialogComponent } from './create-sale-dialog/create-sale-dialog.component';
+import { AddMedicineToSaleDialogComponent } from './add-medicine-to-sale-dialog/add-medicine-to-sale-dialog.component';
 
 
 
@@ -55,6 +57,8 @@ import { ViewShelfMedicinesDialogComponent } from './view-shelf-medicines-dialog
     AddMedicineToShelfDialogComponent,
     AddShelfDialogComponent,
     ViewShelfMedicinesDialogComponent,
+    CreateSaleDialogComponent,
+    AddMedicineToSaleDialogComponent,
     
   ],
   imports: [
