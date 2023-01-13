@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class SaleController extends AbstractController {
@@ -59,6 +61,14 @@ public class SaleController extends AbstractController {
         int userId = sessionManager.getLoggedId(session);
         Sale sale = saleService.deleteById(userId, saleId);
         return EntityToDTOConverter.convertToResponseDeleteSaleDTO(sale);
+    }
+    @GetMapping("sales/")
+    public List<ResponseSaleDTO> getByPharmacy(HttpSession session){
+        int userId=sessionManager.getLoggedId(session);
+        List<Sale> sales=saleService.getAllByPharmacy(userId);
+        return sales.stream()
+                .map(EntityToDTOConverter::convertToResponseSaleDTO)
+                .collect(Collectors.toList());
     }
 
 }

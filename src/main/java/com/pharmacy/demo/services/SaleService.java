@@ -93,4 +93,9 @@ public class SaleService {
         }
         return sales.get(0);
     }
+    public List<Sale> getAllByPharmacy(int userId) {
+        User user= utils.checkWhetherUserHasPharmacy(userId);
+        Pharmacy pharmacy = user.getPharmacy();
+        return saleRepository.getSalesByPharmacyId(pharmacy.getId());
+    }
 }
