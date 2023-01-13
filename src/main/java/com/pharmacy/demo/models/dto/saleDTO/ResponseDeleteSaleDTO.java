@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 public class ResponseDeleteSaleDTO {
+    private int id;
     private String name;
     private int price;
     private Timestamp createTime;

@@ -33,9 +33,7 @@ export class MedicinesComponent implements OnInit {
   medicines:ResponseMedicine[]=[];
   selectedId!:number;
   dataSource = new MatTableDataSource<ResponseMedicine>();
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+  
   medicine:ResponseMedicine={
     id:0,
     name:'',
@@ -54,6 +52,9 @@ export class MedicinesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMedicines();
+  }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
   addMedicines(){
     this.dialog.open(AddMedicinesDialogComponent);

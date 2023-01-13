@@ -13,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 public class ResponseSaleDTO {
+    private int id;
     private String name;
     private int price;
     private Timestamp createTime;

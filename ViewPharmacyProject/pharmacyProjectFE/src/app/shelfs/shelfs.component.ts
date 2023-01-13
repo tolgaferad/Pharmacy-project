@@ -22,6 +22,7 @@ export class ShelfsComponent implements OnInit {
   shelfs:ResponseShelf[]=[];
   selectedId!:number;
   dataSource = new MatTableDataSource<ResponseShelf>();
+  displayedColumns: string[] = ['id', 'name', 'capacity'];
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -33,7 +34,6 @@ export class ShelfsComponent implements OnInit {
   ngOnInit(): void {
     this.getShelfs();
   }
-  displayedColumns: string[] = ['id', 'name', 'capacity'];
   onSelect(row:any){
     this.selectedId=row.id;
     console.log(row);

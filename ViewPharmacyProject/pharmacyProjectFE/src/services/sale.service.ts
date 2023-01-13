@@ -14,14 +14,11 @@ export class SaleService {
   public addSale(sale:AddSale):Observable<any>{
     return this.httpClient.post<AddSale>(`${this.saleUrl}`,sale,{withCredentials:true});
   }
-  public getByPharmacy():Observable<any>{
-    return this.httpClient.get<any>(`${this.saleUrl}/pharmacy/`,{withCredentials:true});
-  }
   public addMedicineToSale(medicineId:number, saleId:number):Observable<any>{
     return this.httpClient.get<any>(`${this.saleUrl}/`+saleId+'/medicines/'+medicineId,{withCredentials:true});
   }
   public getAllByPharmacy(){
-    return this.httpClient.get<ResponseSale>(`${this.saleUrl}/`,{withCredentials:true})
+    return this.httpClient.get<any>(`${this.saleUrl}/`,{withCredentials:true})
   }
   public deleteSale(saleId:number):Observable<any>{
     return this.httpClient.delete<any>(`${this.saleUrl}/`+saleId,{withCredentials:true});
