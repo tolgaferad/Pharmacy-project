@@ -29,6 +29,5 @@ public class Sale {
     private Pharmacy pharmacy;
     public Sale(AddSaleDTO addSaleDTO) {
          this.name=addSaleDTO.getName();
-         this.createTime=addSaleDTO.getCreateTime();
     }
 }

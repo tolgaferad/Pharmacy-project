@@ -11,5 +11,4 @@ import java.sql.Timestamp;
 @Setter
 public class AddSaleDTO {
     private String name;
-    private Timestamp createTime;
 }

@@ -29,11 +29,11 @@ public class SaleService {
     public Sale addSale(AddSaleDTO addSaleDTO, int userId) {
         User user = utils.checkWhetherUserHasPharmacy(userId);
         Pharmacy pharmacy = user.getPharmacy();
-        addSaleDTO.setCreateTime(new Timestamp(System.currentTimeMillis()));
         if (addSaleDTO.getName() != null) {
             addSaleDTO.setName(addSaleDTO.getName());
         }
         Sale sale = new Sale(addSaleDTO);
+        sale.setCreateTime(new Timestamp(System.currentTimeMillis()));
         sale.setPharmacy(pharmacy);
         saleRepository.save(sale);
         return sale;
