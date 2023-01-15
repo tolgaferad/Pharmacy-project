@@ -36,7 +36,7 @@ export class AddMedicinesDialogComponent implements OnInit {
   onSubmit() {
     this.medicineService.addMedicine(this.medicine).subscribe(
       response=>{
-        alert("Pharmacy created successfully");
+        alert("Medicines added successfully");
         this.dialogRef.close();
         let currentUrl = this.router.url
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;

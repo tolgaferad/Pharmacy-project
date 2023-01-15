@@ -9,14 +9,60 @@
             <mat-label>Sale</mat-label>
             <mat-select [(ngModel)]="saleId"name="shelfId">
             <div>
-                <mat-option *ngFor="let sale of sales"  [value]="sale.id">
+                <mat-option *ngFor="let sale of sales" (click)="onSelectSale()"  [value]="sale.id">
                     {{sale.id}}-{{sale.name}}
                 </mat-option>
             </div>
               </mat-select>
+              
           </mat-form-field>
+          <div>
+          <mat-form-field  appearance="fill">
+            <mat-label>Price</mat-label>
+                <input [readonly]="true" matInput [value]="sale.price">
+            </mat-form-field>
+        </div>
     </form>
-    <div style="margin: top 20px;">
+    <div>
+        <strong>Sale:</strong>
+        <div><br></div>
+        <table style="width: 60%;"mat-table [dataSource]="saleMedicinesDataSource" class="mat-elevation-z8 demo-table">
+            <!-- Position Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="barcode">
+              <th mat-header-cell *matHeaderCellDef>Barcode</th>
+              <td mat-cell *matCellDef="let element">{{element.barcode}}</td>
+            </ng-container>
+            <!-- Weight Column -->          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="manufacturer">
+              <th mat-header-cell *matHeaderCellDef>Manufacturer</th>
+              <td mat-cell *matCellDef="let element">{{element.manufacturer}}</td>
+            </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>Price</th>
+                <td mat-cell *matCellDef="let element">{{element.price}}</td>
+              </ng-container>
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="shelfName">
+                <th mat-header-cell *matHeaderCellDef>Shelf Name</th>
+                <td mat-cell *matCellDef="let element">{{element.shelfName}}</td>
+              </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+      mat-row [ngClass]="{'highlight': selectedId == row.id}"
+      (click)="onSelect(row)"
+      *matRowDef="let row; columns: displayedColumns;"
+    ></tr>
+    </table>
+    <mat-paginator #paginator2 [pageSizeOptions]="[5,10]" aria-label="Select page of users"></mat-paginator>
+    </div>
+    <div style="margin: top 150px;">
         <strong>Medicines:</strong>
         <div><br></div>
         <mat-form-field appearance="standard">
@@ -57,7 +103,7 @@
       *matRowDef="let row; columns: displayedColumns;"
     ></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5,10,20]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator #paginator1 [pageSizeOptions]="[5,10,20]" aria-label="Select page of users"></mat-paginator>
     </div>
     <div mat-dialog-action [align]="'end'">
         <button mat-raised-button color="warn" mat-dialog-close>Close</button>

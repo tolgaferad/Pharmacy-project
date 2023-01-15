@@ -5,6 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ResponseMedicine } from 'src/models/medicineDTO/responseMedicine';
+import { ResponseSaleDetail } from 'src/models/saleDetailsDTO/responseSaleDetail';
+import { ResponseSale } from 'src/models/saleDTO/responseSale';
 import { MedicineService } from 'src/services/medicine.service';
 import { SaleService } from 'src/services/sale.service';
 import { SnackBarMessageForAddMedToSaleComponent } from '../snack-bar-message-for-add-med-to-sale/snack-bar-message-for-add-med-to-sale.component';
@@ -16,14 +18,28 @@ import { SnackBarMessageForAddMedToSaleComponent } from '../snack-bar-message-fo
   styleUrls: ['./add-medicine-to-sale-dialog.component.css']
 })
 export class AddMedicineToSaleDialogComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator1') paginator1: MatPaginator;
+  @ViewChild('paginator2') paginator2:MatPaginator;
   saleId:number;
   medicines:ResponseMedicine[]=[];
+  medicinesOfSale:ResponseSaleDetail[]=[];
+
   selectedId!:number;
   sales:any=[];
+  sale:ResponseSale={
+    id:'',
+    name:'',
+    price:'',
+    createTime:'',
+    isConfirmed:'',
+    pharmacyName:'',
+    saleDetails:[]
+  }
+  saleMedicinesDataSource=new MatTableDataSource<ResponseSaleDetail>;
   dataSource = new MatTableDataSource<ResponseMedicine>();
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator1;
+    this.saleMedicinesDataSource.paginator=this.paginator2;
   }
   constructor(public medicineService:MedicineService,
               private dialog:MatDialog,
@@ -51,6 +67,7 @@ export class AddMedicineToSaleDialogComponent implements OnInit {
     this.saleService.addMedicineToSale(this.selectedId,this.saleId).subscribe(
       response=>{
         this.getMedicines();
+        this.getById(this.saleId);
         this._snackBar.openFromComponent(SnackBarMessageForAddMedToSaleComponent, {
           duration: 1 * 1000,
         });
@@ -62,13 +79,29 @@ export class AddMedicineToSaleDialogComponent implements OnInit {
     console.log(row);
     console.log("Selected item Id: ", this.selectedId)
     }
-    
+    getById(saleId:number){
+      this.saleService.getById(this.saleId).subscribe(
+        response=>{
+          console.log("here")
+          this.sale.price=response.price
+          this.saleMedicinesDataSource.data=response.saleDetails;
+          console.log(this.medicinesOfSale)
+          console.log(this.sale.price);
+        },
+        err=>{
+
+        }
+      )
+    }
+    onSelectSale(){
+      this.getById(this.saleId);
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   getSales(){
-    this.saleService.getAllByPharmacy().subscribe(
+    this.saleService.getAllByPharmacy().pipe().subscribe(
       response=>{
       this.sales=response
       console.log(response);

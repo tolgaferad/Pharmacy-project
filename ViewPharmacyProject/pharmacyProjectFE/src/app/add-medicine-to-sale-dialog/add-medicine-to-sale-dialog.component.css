@@ -16,4 +16,7 @@ table {
   .addMedicineToShelfDialog{
     max-width: 100%;
   }
+  .saleMedicinesTable{
+    width: 10%;
+  }
 

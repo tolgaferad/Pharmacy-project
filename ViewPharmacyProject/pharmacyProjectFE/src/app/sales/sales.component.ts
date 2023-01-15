@@ -30,7 +30,10 @@ export class SalesComponent implements OnInit {
     this.dialog.open(CreateSaleDialogComponent);
   }
   addMedicineToSale(){
-    this.dialog.open(AddMedicineToSaleDialogComponent);
+    this.dialog.open(AddMedicineToSaleDialogComponent,{
+      width:'100%',
+      height:'90%'
+    });
   }
   deleteSale(saleId:number){
     this.saleService.deleteSale(saleId).subscribe(
