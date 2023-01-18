@@ -5,7 +5,7 @@ export interface ResponseSale{
     name:string,
     price:string,
     createTime:string,
-    isConfirmed:string,
+    confirmed:boolean,
     pharmacyName:string,
     saleDetails:ResponseSaleDetail[];
 }

@@ -70,5 +70,6 @@ public class SaleController extends AbstractController {
                 .map(EntityToDTOConverter::convertToResponseSaleDTO)
                 .collect(Collectors.toList());
     }
+    //TODO Add functionality for deletion of medicine from sale and adding it back to the medicine list of pharmacy
 
 }

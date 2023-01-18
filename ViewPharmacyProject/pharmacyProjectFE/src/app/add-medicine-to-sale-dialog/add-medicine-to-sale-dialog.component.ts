@@ -25,13 +25,13 @@ export class AddMedicineToSaleDialogComponent implements OnInit {
   medicinesOfSale:ResponseSaleDetail[]=[];
 
   selectedId!:number;
-  sales:any=[];
+  sales:ResponseSale[]=[];
   sale:ResponseSale={
     id:'',
     name:'',
     price:'',
     createTime:'',
-    isConfirmed:'',
+    confirmed:false,
     pharmacyName:'',
     saleDetails:[]
   }
@@ -104,7 +104,7 @@ export class AddMedicineToSaleDialogComponent implements OnInit {
     this.saleService.getAllByPharmacy().pipe().subscribe(
       response=>{
       this.sales=response
-      console.log(response);
+      this.sales=this.sales.filter(s=>s.confirmed===false)
     },
     err=>{
 

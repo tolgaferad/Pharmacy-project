@@ -45,6 +45,7 @@ public class SaleService {
         if (medicines.isEmpty()) {
             throw new NotFoundException("Medicine not found");
         }
+        medicineService.delete(userId,medicineId);
         SaleDetail saleDetail = new SaleDetail(medicines.get(0));
         sale.getSaleDetails().add(saleDetail);
         int salePrice = sale.getPrice();

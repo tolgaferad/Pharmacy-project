@@ -18,7 +18,7 @@ export class SalesComponent implements OnInit {
   sales:ResponseSale[]=[];
   selectedId!:number;
   dataSource = new MatTableDataSource<ResponseSale>();
-  displayedColumns: string[] = ['id', 'name', 'price', 'createTime','isConfirmed'];
+  displayedColumns: string[] = ['id', 'name', 'price', 'createTime','confirmed'];
   constructor(public saleService:SaleService,
               private dialog:MatDialog,
               private router:Router) { }
