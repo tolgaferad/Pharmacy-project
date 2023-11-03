@@ -6,7 +6,7 @@ import com.pharmacy.demo.exceptions.NotFoundException;
 import com.pharmacy.demo.models.dto.userDTO.*;
 import com.pharmacy.demo.models.pojo.User;
 import com.pharmacy.demo.models.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+
+    private final UserRepository userRepository;
 
     public User getUserById(int id) {
         Optional<User> user = userRepository.findById(id);

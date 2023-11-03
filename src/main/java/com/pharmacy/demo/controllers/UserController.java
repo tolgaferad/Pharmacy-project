@@ -4,40 +4,40 @@ import com.pharmacy.demo.models.dto.userDTO.*;
 import com.pharmacy.demo.models.pojo.User;
 import com.pharmacy.demo.services.UserService;
 import com.pharmacy.demo.utils.SessionManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RestController
+@RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController extends AbstractController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private SessionManager sessionManager;
+    private final UserService userService;
+    private final SessionManager sessionManager;
 
-    @GetMapping("/users")
+    @GetMapping
     public UserWithoutPasswordDTO getById(HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
         User user = userService.getUserById(userId);
         return new UserWithoutPasswordDTO(user);
     }
 
-    @PostMapping("/users")
+    @PostMapping
     public UserWithoutPasswordDTO register(@Valid @RequestBody UserRegisterDTO userDTO) {
         User user = userService.addUser(userDTO);
         return new UserWithoutPasswordDTO(user);
     }
 
-    @PostMapping("/users/login")
+    @PostMapping("/login")
     public UserWithoutPasswordDTO login(@Valid @RequestBody UserLoginDTO loginUserDto, HttpSession session) {
         User user = userService.login(loginUserDto);
         sessionManager.loginUser(session, user.getId());
         return new UserWithoutPasswordDTO(user);
     }
 
-    @PutMapping("/users")
+    @PutMapping
     public UserWithoutPasswordDTO edit(@Valid @RequestBody UpdateRequestUserDTO editUserDTO,
                                        HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
@@ -45,13 +45,13 @@ public class UserController extends AbstractController {
         return new UserWithoutPasswordDTO(user);
     }
 
-    @DeleteMapping("/users")
+    @DeleteMapping
     public UserWithoutPasswordDTO delete(HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
         return userService.deleteUser(userId);
     }
 
-    @GetMapping("/users/logout")
+    @GetMapping("/logout")
     public UserWithoutPasswordDTO logout(HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
         User user = userService.logoutUser(userId);
@@ -59,7 +59,7 @@ public class UserController extends AbstractController {
         return new UserWithoutPasswordDTO(user);
     }
 
-    @PostMapping("/users/change_password")
+    @PostMapping("/change_password")
     public UserWithoutPasswordDTO changePassword(@Valid @RequestBody ChangePassUserDTO changePasswordDTO,
                                                  HttpSession session) {
         int userId = sessionManager.getLoggedId(session);

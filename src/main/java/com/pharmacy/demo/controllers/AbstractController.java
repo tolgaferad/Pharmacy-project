@@ -34,11 +34,13 @@ public class AbstractController {
     public ErrorDTO handleNotFound(NotFoundException e) {
         return new ErrorDTO(e.getMessage());
     }
+
     @ExceptionHandler(UnauthorizedException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ErrorDTO handleUnauthorized(UnauthorizedException e){
         return new ErrorDTO(e.getLocalizedMessage());
     }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(

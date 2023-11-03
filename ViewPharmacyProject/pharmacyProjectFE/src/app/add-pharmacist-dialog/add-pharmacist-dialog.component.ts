@@ -28,7 +28,7 @@ export class AddPharmacistDialogComponent implements OnInit {
   onSubmit() {
     this.pharmacyService.addPharmacist(this.userOnlyEmail).subscribe(
       response=>{
-        alert("User created successfully");
+        alert("User added successfully");
         this.dialogRef.close();
         let currentUrl = this.router.url
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;

@@ -87,7 +87,7 @@ export class MedicinesComponent implements OnInit {
       this.dataSource.data=response;
     },
     err=>{
-        alert("You don't have pharmacy please create Pharmacy")
+       
     }
     )
   }

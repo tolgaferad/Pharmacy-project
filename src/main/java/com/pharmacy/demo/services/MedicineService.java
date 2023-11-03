@@ -10,6 +10,7 @@ import com.pharmacy.demo.models.pojo.*;
 import com.pharmacy.demo.models.repository.MedicineRepository;
 import com.pharmacy.demo.models.repository.UserRepository;
 import com.pharmacy.demo.utils.Utils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,16 +19,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-@Service
+@RequiredArgsConstructor
 public class MedicineService {
-    @Autowired
-    private MedicineRepository medicineRepository;
-    @Autowired
-    private MedicineDAO medicineDAO;
-    @Autowired
-    private Utils utils;
-    @Autowired
-    private ShelfService shelfService;
+    private final MedicineRepository medicineRepository;
+    private final MedicineDAO medicineDAO;
+    private final Utils utils;
+    private final ShelfService shelfService;
 
     public Medicine getById(int userId, int medicineId) {
         List<Medicine> medicineList = getMedicineForPharmacy(userId, medicineId);
@@ -37,7 +34,7 @@ public class MedicineService {
         return medicineList.get(0);
     }
 
-    public List<Medicine> addMedicine(AddMedicineDTO addMedicineDTO, int userId) {
+    public List<Medicine> addMedicines(AddMedicineDTO addMedicineDTO, int userId) {
         User user=utils.checkWhetherUserHasPharmacy(userId);
         Pharmacy pharmacy = user.getPharmacy();
         if (addMedicineDTO.getPrice() < 0) {

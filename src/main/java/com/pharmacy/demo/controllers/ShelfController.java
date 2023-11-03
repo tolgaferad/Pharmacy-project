@@ -7,7 +7,7 @@ import com.pharmacy.demo.models.pojo.Shelf;
 import com.pharmacy.demo.services.ShelfService;
 import com.pharmacy.demo.utils.EntityToDTOConverter;
 import com.pharmacy.demo.utils.SessionManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -15,13 +15,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/shelfs")
+@RequiredArgsConstructor
 public class ShelfController extends AbstractController {
-    @Autowired
-    private SessionManager sessionManager;
-    @Autowired
-    private ShelfService shelfService;
+    private final SessionManager sessionManager;
+    private final ShelfService shelfService;
 
-    @PostMapping("/shelfs")
+    @PostMapping
     public ResponseShelfDTO addShelf(HttpSession session,
                                      @RequestBody AddShelfDTO addShelfDTO) {
         int userId = sessionManager.getLoggedId(session);
@@ -29,7 +29,7 @@ public class ShelfController extends AbstractController {
         return EntityToDTOConverter.convertToResponseShelfDTO(shelf);
     }
 
-    @GetMapping("/shelfs/{shelf_id}")
+    @GetMapping("/{shelf_id}")
     public ResponseShelfDTO getById(HttpSession session,
                                     @PathVariable("shelf_id") int shelfId) {
         int userId = sessionManager.getLoggedId(session);
@@ -37,7 +37,7 @@ public class ShelfController extends AbstractController {
         return EntityToDTOConverter.convertToResponseShelfDTO(shelf);
     }
 
-    @GetMapping("/shelfs/pharmacy")
+    @GetMapping("/pharmacy")
     public List<ResponseShelfDTO> getAllByPharmacy(HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
         List<Shelf> shelves = shelfService.getAllByPharmacy(userId);
@@ -46,13 +46,12 @@ public class ShelfController extends AbstractController {
                 .collect(Collectors.toList());
     }
 
-    @DeleteMapping("/shelfs/{shelf_id}")
+    @DeleteMapping("/{shelf_id}")
     public ResponseDeleteShelfDTO delete(HttpSession session,
                                          @PathVariable("shelf_id") int shelfId) {
         int userId = sessionManager.getLoggedId(session);
         Shelf shelf = shelfService.delete(userId, shelfId);
         return EntityToDTOConverter.convertToResponseDeleteShelfDTO(shelf);
     }
-
 
 }

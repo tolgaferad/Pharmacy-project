@@ -63,5 +63,12 @@ export class AddShelfDialogComponent implements OnInit {
     )
 
   }
+  onClose(){
+    this.dialogRef.close();
+      let currentUrl = this.router.url
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([currentUrl]);
+  }
 
 }

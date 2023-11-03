@@ -10,6 +10,7 @@ import com.pharmacy.demo.models.pojo.Pharmacy;
 import com.pharmacy.demo.models.pojo.User;
 import com.pharmacy.demo.models.repository.PharmacyRepository;
 import com.pharmacy.demo.models.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +19,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class PharmacyService {
-    @Autowired
-    private PharmacyRepository pharmacyRepository;
-    @Autowired
-    private UserRepository userRepository;
+    private final PharmacyRepository pharmacyRepository;
+    private final UserRepository userRepository;
 
     public User addPharmacist(UserOnlyEmailDTO userEmailDTO, int currentUserId) {
         User loggedUser = checkWhetherIsAdmin(currentUserId);

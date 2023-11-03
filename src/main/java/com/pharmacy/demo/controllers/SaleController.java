@@ -7,7 +7,7 @@ import com.pharmacy.demo.models.pojo.Sale;
 import com.pharmacy.demo.services.SaleService;
 import com.pharmacy.demo.utils.EntityToDTOConverter;
 import com.pharmacy.demo.utils.SessionManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -16,13 +16,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/sales")
+@RequiredArgsConstructor
 public class SaleController extends AbstractController {
-    @Autowired
-    private SessionManager sessionManager;
-    @Autowired
-    private SaleService saleService;
+    private final SessionManager sessionManager;
+    private final SaleService saleService;
 
-    @PostMapping("/sales")
+    @PostMapping
     public ResponseSaleDTO addSale(@Valid @RequestBody AddSaleDTO addSaleDTO,
                                    HttpSession session) {
         int userId = sessionManager.getLoggedId(session);
@@ -30,7 +30,7 @@ public class SaleController extends AbstractController {
         return EntityToDTOConverter.convertToResponseSaleDTO(sale);
     }
 
-    @GetMapping("/sales/{sale_id}/medicines/{medicine_id}")
+    @GetMapping("/{sale_id}/medicines/{medicine_id}")
     public ResponseSaleDTO addMedicineToSale(HttpSession session,
                                              @PathVariable("medicine_id") int medicineId,
                                              @PathVariable("sale_id") int saleId) {
@@ -39,7 +39,7 @@ public class SaleController extends AbstractController {
         return EntityToDTOConverter.convertToResponseSaleDTO(sale);
     }
 
-    @GetMapping("sales/{sale_id}/confirm")
+    @GetMapping("/{sale_id}/confirm")
     public ResponseSaleDTO confirmSale(HttpSession session,
                                        @PathVariable("sale_id") int saleId) {
         int userId = sessionManager.getLoggedId(session);
@@ -47,7 +47,7 @@ public class SaleController extends AbstractController {
         return EntityToDTOConverter.convertToResponseSaleDTO(sale);
     }
 
-    @GetMapping("sales/{sale_id}")
+    @GetMapping("/{sale_id}")
     public ResponseSaleDTO getById(HttpSession session,
                                    @PathVariable("sale_id") int saleId) {
         int userId = sessionManager.getLoggedId(session);
@@ -55,14 +55,14 @@ public class SaleController extends AbstractController {
         return EntityToDTOConverter.convertToResponseSaleDTO(sale);
     }
 
-    @DeleteMapping("sales/{sale_id}")
+    @DeleteMapping("/{sale_id}")
     public ResponseDeleteSaleDTO delete(HttpSession session,
                                         @PathVariable("sale_id") int saleId) {
         int userId = sessionManager.getLoggedId(session);
         Sale sale = saleService.deleteById(userId, saleId);
         return EntityToDTOConverter.convertToResponseDeleteSaleDTO(sale);
     }
-    @GetMapping("sales/")
+    @GetMapping
     public List<ResponseSaleDTO> getByPharmacy(HttpSession session){
         int userId=sessionManager.getLoggedId(session);
         List<Sale> sales=saleService.getAllByPharmacy(userId);

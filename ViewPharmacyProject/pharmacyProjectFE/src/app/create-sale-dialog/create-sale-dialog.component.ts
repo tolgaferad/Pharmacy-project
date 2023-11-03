@@ -23,7 +23,7 @@ export class CreateSaleDialogComponent implements OnInit {
   onSubmit(){
     this.saleService.addSale(this.sale).subscribe(
       response=>{
-        alert("Pharmacy created successfully");
+        alert("Sale created successfully");
         this.dialogRef.close();
         let currentUrl = this.router.url
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;

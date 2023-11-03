@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -25,7 +25,8 @@ export class AddMedicineToShelfDialogComponent implements OnInit {
   constructor(public medicineService:MedicineService,
               private dialog:MatDialog,
               private router:Router,
-              private shelfService:ShelfService) { }
+              private shelfService:ShelfService,
+              public dialogRef: MatDialogRef<AddMedicineToShelfDialogComponent>) { }
 
   ngOnInit(): void {
     this.getMedicines();
@@ -69,5 +70,12 @@ export class AddMedicineToShelfDialogComponent implements OnInit {
 
       }
     )
+  }
+  onClose(){
+    this.dialogRef.close();
+      let currentUrl = this.router.url
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([currentUrl]);
   }
 }

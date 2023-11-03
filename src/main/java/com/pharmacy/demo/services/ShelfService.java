@@ -7,6 +7,7 @@ import com.pharmacy.demo.models.pojo.Shelf;
 import com.pharmacy.demo.models.pojo.User;
 import com.pharmacy.demo.models.repository.ShelfRepository;
 import com.pharmacy.demo.utils.Utils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ShelfService {
-    @Autowired
-    private Utils utils;
-    @Autowired
-    private ShelfRepository shelfRepository;
+
+    private final Utils utils;
+    private final ShelfRepository shelfRepository;
+
     public Shelf addShelf(int userId, AddShelfDTO addShelfDTO) {
         User user= utils.checkWhetherUserHasPharmacy(userId);
         Pharmacy pharmacy = user.getPharmacy();

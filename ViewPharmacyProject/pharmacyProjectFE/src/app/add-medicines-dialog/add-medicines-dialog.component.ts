@@ -13,12 +13,12 @@ import { FormGroup, Validators } from '@angular/forms';
 })
 export class AddMedicinesDialogComponent implements OnInit {
   medicine:AddMedicine={
-    name:'',
-    strength:'',
-    manufacturer:'',
-    details:'',
-    price:'',
-    expiryDate:'',
+    name:' ',
+    strength:' ',
+    manufacturer:' ',
+    details:' ',
+    price:' ',
+    expiryDate:' ',
     quantity:0,
 }
   constructor(private medicineService:MedicineService,

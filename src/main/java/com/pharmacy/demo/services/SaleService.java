@@ -7,6 +7,8 @@ import com.pharmacy.demo.models.pojo.*;
 import com.pharmacy.demo.models.repository.SaleDetailRepository;
 import com.pharmacy.demo.models.repository.SaleRepository;
 import com.pharmacy.demo.utils.Utils;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +18,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class SaleService {
-    @Autowired
-    private SaleRepository saleRepository;
-    @Autowired
-    private SaleDetailRepository saleDetailRepository;
-    @Autowired
-    private Utils utils;
-    @Autowired
-    MedicineService medicineService;
+    private final SaleRepository saleRepository;
+    private final SaleDetailRepository saleDetailRepository;
+    private final Utils utils;
+    private final MedicineService medicineService;
 
     public Sale addSale(AddSaleDTO addSaleDTO, int userId) {
         User user = utils.checkWhetherUserHasPharmacy(userId);
@@ -61,12 +60,6 @@ public class SaleService {
         Sale sale = getSaleIfExist(userId, saleId);
         if (sale.isConfirmed()) {
             throw new BadRequestException("Sale is already confirmed");
-        }
-        List<Integer> medicineIds = sale.getSaleDetails().stream()
-                .map(SaleDetail::getMedicineId)
-                .collect(Collectors.toList());
-        for (int medicineId : medicineIds) {
-            medicineService.delete(userId, medicineId);
         }
         sale.setConfirmed(true);
         saleRepository.save(sale);
